@@ -69,4 +69,43 @@ header a {
 .item-details img{
   height: 250px;
   width: 250px;
+  opacity: 75%;
+  transition-duration: .7s;
+}
+.item-details img:hover{
+  transition-duration: .7s;
+  height: 400px;
+  width: 400px;
+  opacity: 100%;
+}
+
+/* new item sector */
+label, input {
+  display: block;
+}
+input {
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 5px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
 }
