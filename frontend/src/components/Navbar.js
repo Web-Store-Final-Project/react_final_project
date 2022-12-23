@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const NavbarComp = ()=>{
+const Navbar = ()=>{
     return(
       <header>
         <div className="container">
@@ -11,4 +11,4 @@ const NavbarComp = ()=>{
     );
 }
 
-export default NavbarComp
+export default Navbar

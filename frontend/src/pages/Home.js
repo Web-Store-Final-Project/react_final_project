@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useItemsContext } from "../hooks/useItemsContext";
 
 //components
 import ItemDetails from '../components/ItemDetails'
+import ItemForm from "../components/ItemForm";
 
 const Home = ()=>{
-    const [items,setItems] = useState(null)
+    const {items,dispatch} = useItemsContext()
 
     useEffect(()=>{
         const fetchItems = async ()=>{
@@ -12,19 +14,21 @@ const Home = ()=>{
             const json = await response.json()
 
             if(response.ok){
-                setItems(json)
+                dispatch({type:'SET_ITEMS',payload:json})
             }
         }
+
         fetchItems()
-    },[])
+    }, [dispatch])
     
     return(
         <div className="home">
             <div className="items">
-                {items && items.map((item)=>(
-                    <ItemDetails key={item._id} item={item}/>
+                {items && items.map(item=>(
+                    <ItemDetails item = {item} key={item._id}/>
                 ))}
             </div>
+            <ItemForm/>
         </div>
     );
 }
