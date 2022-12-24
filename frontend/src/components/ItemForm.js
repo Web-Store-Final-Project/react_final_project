@@ -12,32 +12,32 @@ const ItemForm = ()=>{
     const[error,setError] = useState(null)
     // const[date,setDate] = useState('')
 
-const handleSubmit = async (event) =>{
-    event.preventDefault()
+    const handleSubmit = async (event) =>{
+        event.preventDefault()
 
-    const item = {title,description,price,imgPath}
+        const item = {title,description,price,imgPath}
 
-    const response = await fetch('/api/items',{
-        method:'POST',
-        body:JSON.stringify(item),
-        headers:{
-            'Content-Type':'application/json'
+        const response = await fetch('/api/items',{
+            method:'POST',
+            body:JSON.stringify(item),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        const json = await response.json()
+
+        if(!response.ok){
+            setError(json.error)
         }
-    })
-    const json = await response.json()
-
-    if(!response.ok){
-        setError(json.error)
+        if(response.ok){
+            setTitle('')
+            setDescription('')
+            setPrice('')
+            setError(null)
+            console.log("New item added")
+            dispatch({type:'CREATE_ITEM',payload:json})
+        }
     }
-    if(response.ok){
-        setTitle('')
-        setDescription('')
-        setPrice('')
-        setError(null)
-        console.log("New item added")
-        dispatch({type:'CREATE_ITEM',payload:json})
-    }
-}
     return(
         <form className="create" onSubmit={handleSubmit}>
             <h3>Add new Item</h3>

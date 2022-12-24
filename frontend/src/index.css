@@ -63,20 +63,25 @@ header a {
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
-  border-radius: 50%;
-  color: #333;
+  border-radius: 90%;
+  color: rgb(197, 6, 6);
 }
-.item-details img{
+.imgItem{
   height: 250px;
   width: 250px;
   opacity: 75%;
   transition-duration: .7s;
 }
-.item-details img:hover{
+.imgItem:hover{
   transition-duration: .7s;
   height: 400px;
   width: 400px;
   opacity: 100%;
+}
+
+.deleteIcon{
+  height:30px;
+  width:30px;
 }
 
 /* new item sector */
