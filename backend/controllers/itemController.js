@@ -1,5 +1,6 @@
 const Item = require('../models/itemModel')
 const mongoose = require('mongoose')
+const { response, json } = require('express')
 
 //get all items
 const getAllItems = async(req,res)=>{
@@ -28,6 +29,26 @@ const getSingleItem = async(req,res)=>{
 //create new item
 const createItem = async(req,res)=>{
     const{title,description,price,imgPath,date} = req.body
+
+    let emptyFields = []
+    
+    if(!title){
+        emptyFields.push('title')
+    }
+    if(!description){
+        emptyFields.push('description')
+    }
+    if(!price){
+        emptyFields.push('price')
+    }
+    if(!imgPath){
+        emptyFields.push('imgPath')
+    }
+    if(emptyFields.length > 0){
+        return res.status(400).json({error:'Please fill all the fields' ,emptyFields})
+    }
+
+
     //add doc to db
     try{
         const item = await Item.create({title,description,price,imgPath,date})
