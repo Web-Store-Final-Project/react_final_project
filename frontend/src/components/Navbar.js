@@ -4,7 +4,7 @@ const Navbar = ()=>{
       <header>
         <div className="container">
             <Link to={"/"}>
-                <h1>Let The Fins Out </h1>
+                <h1>Admin Page </h1>
             </Link>
         </div>
       </header> 
