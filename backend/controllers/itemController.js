@@ -32,6 +32,7 @@ const createItem = async(req,res)=>{
 
     let emptyFields = []
     
+    //check if user didn't insert all input to fields
     if(!title){
         emptyFields.push('title')
     }

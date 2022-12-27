@@ -21,10 +21,10 @@ const ItemDetails = ({item})=>{
             <h4>{item.title}</h4>
             <p><strong>Description: </strong>{item.description}</p>
             <p><strong>Price: </strong>{item.price}$</p>
-            <img className="imgItem" src = {item.imgPath}></img>
+            <img className="imgItem" src = {item.imgPath} alt=""></img>
             <p>uploaded {formatDistanceToNow(new Date(item.createdAt),{addSuffix:true})}</p>
             <span onClick={handleClick} >
-                <img className="deleteIcon" src="https://cdn-icons-png.flaticon.com/512/216/216760.png"></img>
+                <img className="deleteIcon" src="https://cdn-icons-png.flaticon.com/512/216/216760.png" alt=""></img>
             </span>
         </div> 
     );
