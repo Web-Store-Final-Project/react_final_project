@@ -1,23 +1,22 @@
 import { Link } from "react-router-dom";
-const Navbar = (props) => {
+import ShoppingCart from "./ShoppingCart";
+import HomeIcon from "@mui/icons-material/Home";
+import LoginIcon from "./LoginIcon";
   return (
     <header>
       <div className="container">
         <Link to={"/"}>
-          <h1>Home Page </h1>
+          <HomeIcon fontSize="large" />
         </Link>
-        { 
-          props.isAdmin &&
-          <Link to={"/admin"}>
-            <h1>Admin Page</h1>
-          </Link>
-        }
-        <Link to={"/signin"}>
-          <h1>Log-In</h1>
+        <Link to={"/admin"} style={{ paddingLeft: "20px" }}>
+          <h2>Admin Page</h2>
         </Link>
-        {/* <Link to={"/signup"}>
-          <h1>Sign-Up </h1>
-        </Link> */}
+        <Link to={"/signin"} style={{ paddingLeft: "900px" }}>
+          <LoginIcon />
+        </Link>
+        <div style={{ paddingRight: "50px" }}>
+          <ShoppingCart />
+        </div>
       </div>
     </header>
   );
