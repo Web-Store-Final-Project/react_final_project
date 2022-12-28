@@ -7,9 +7,9 @@ export default function Signin(props) {
   const [password, setPassword] = useState("");
   const [email,setEmail] = useState("");
   const navigate = useNavigate();
-  const login = (e) => {
-    e.preventDefault();
-    fire
+    const login = (e) => {
+      e.preventDefault();
+      fire
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
@@ -19,7 +19,7 @@ export default function Signin(props) {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
   return (
     <div>
       <h1>Sign-In</h1>

@@ -1,8 +1,14 @@
+import {useEffect} from 'react'
 import { Link } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "./LoginIcon";
+
+function Navbar(props){  
+// console.log("props.email = " + props.email)
+
   return (
+    <>
     <header>
       <div className="container">
         <Link to={"/"}>
@@ -19,6 +25,7 @@ import LoginIcon from "./LoginIcon";
         </div>
       </div>
     </header>
+    </>
   );
 };
 
