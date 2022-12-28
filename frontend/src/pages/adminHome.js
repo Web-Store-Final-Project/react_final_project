@@ -3,9 +3,9 @@ import { useItemsContext } from "../hooks/useItemsContext";
 
 //components
 import ItemDetails from "../components/ItemDetails";
-// import ItemForm from "../components/ItemForm";
+import ItemForm from "../components/ItemForm";
 
-const Home = () => {
+const AdminHome = () => {
   const { items, dispatch } = useItemsContext();
 
   useEffect(() => {
@@ -27,8 +27,9 @@ const Home = () => {
         {items &&
           items.map((item) => <ItemDetails item={item} key={item._id} />)}
       </div>
+      <ItemForm />
     </div>
   );
 };
 
-export default Home;
+export default AdminHome;
