@@ -44,14 +44,13 @@ axios(url).then(response =>{
     })
 
     console.log(itemsArr)
-    const data = JSON.stringify(itemsArr);
-    export default data;
-    fs.appendFile('proudcts.json', data, err=>{
-        if (err){
-            throw err;
-        }
-        console.log('JSON data is saved');
-    })
+    // const data = JSON.stringify(itemsArr);
+    // fs.appendFile('proudcts.json', data, err=>{
+    //     if (err){
+    //         throw err;
+    //     }
+    //     console.log('JSON data is saved');
+    // })
     // fs.appendFile('scrapedItems.json' ,JSON.stringify(itemsArr),function (error) {
     //         if(error) return console.log(error);
     //         console.log('JSON file items is fucking readyyy')
