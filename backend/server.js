@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const axios = require('axios');
 const itemRoutes = require('./routes/itemsRout.js')
+const userRoutes = require('./routes/userRout');
 const cheerio = require('cheerio')
 const fs = require('fs')
 // express app
@@ -18,6 +19,7 @@ app.use((req,res,next)=>{
 
 //routes
 app.use('/api/items' ,itemRoutes)
+app.use('/api/users' ,userRoutes)
 
 const url = 'https://www.burton.com/us/en/c/mens-snowboards?start=0&sz=24'
 
@@ -44,18 +46,7 @@ axios(url).then(response =>{
     })
 
     console.log(itemsArr)
-    // const data = JSON.stringify(itemsArr);
-    // fs.appendFile('proudcts.json', data, err=>{
-    //     if (err){
-    //         throw err;
-    //     }
-    //     console.log('JSON data is saved');
-    // })
-    // fs.appendFile('scrapedItems.json' ,JSON.stringify(itemsArr),function (error) {
-    //         if(error) return console.log(error);
-    //         console.log('JSON file items is fucking readyyy')
-    //     })
-
+    
 }).catch(err => console.log(err))
 
 
