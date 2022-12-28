@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import fire from "../../config/firebase-config";
 import { Link } from "react-router-dom";
 
-export default function Signin() {
-  const [email, setEmail] = useState("");
+export default function Signin(props) {
   const [password, setPassword] = useState("");
+  const [email,setEmail] = useState("");
   const navigate = useNavigate();
   const login = (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ export default function Signin() {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
-        console.log(user);
+        props.setEmail(email)
         navigate("/");
       })
       .catch((err) => {

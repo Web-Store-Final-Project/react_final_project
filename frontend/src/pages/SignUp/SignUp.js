@@ -1,17 +1,28 @@
 import {React, useState} from 'react'
 import {useNavigate} from "react-router-dom"
 import fire from '../../config/firebase-config';
-import {useNavigation} from 'react-router-dom';
+
 export default function SignUp(){
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState(""); 
+  const [fullname,setFullName] = useState(""); 
+  
   const navigate = useNavigate();
   const signup = (e) =>{
     e.preventDefault();
     fire.auth().createUserWithEmailAndPassword(email,password).then((user)=>{
       console.log(user);
-      navigate("/");
-
+      const requestOptions = {
+        method: 'POST',
+        crossDomain: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({fullname: fullname, email: email, password: password})
+      };
+      console.log("worked");
+      fetch('/api/users/', requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data));
+      //navigate("/signin");
     }).catch((err)=>{
       console.log(err);
     });
@@ -20,6 +31,12 @@ export default function SignUp(){
     <div>
       <h1>sign-up</h1>
       <form>
+        <div>
+            <label>Enter Full Name </label>
+            <input type="text" id="fullname" name="fullname"
+            onChange={(e) => setFullName(e.target.value)}
+            value={fullname}></input>
+        </div>
         <div>
             <label>Enter email </label>
             <input type="email" id="email" name="email"
