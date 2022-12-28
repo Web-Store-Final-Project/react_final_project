@@ -1,5 +1,5 @@
 /* google font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
 /* layout */
 :root {
@@ -17,7 +17,7 @@ header {
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 0px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +26,7 @@ header a {
   color: #333;
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
@@ -44,7 +44,7 @@ header a {
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 .item-details h4 {
   margin: 0 0 10px 0;
@@ -66,26 +66,27 @@ header a {
   border-radius: 90%;
   color: rgb(197, 6, 6);
 }
-.imgItem{
+.imgItem {
   height: 250px;
   width: 250px;
   opacity: 75%;
-  transition-duration: .7s;
+  transition-duration: 0.7s;
 }
-.imgItem:hover{
-  transition-duration: .7s;
+.imgItem:hover {
+  transition-duration: 0.7s;
   height: 400px;
   width: 400px;
   opacity: 100%;
 }
 
-.deleteIcon{
-  height:25px;
-  width:25px;
+.deleteIcon {
+  height: 25px;
+  width: 25px;
 }
 
 /* new item sector */
-label, input {
+label,
+input {
   display: block;
 }
 input {
@@ -114,6 +115,6 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
-input.error{
-  border:1px solid var(--error);
+input.error {
+  border: 1px solid var(--error);
 }

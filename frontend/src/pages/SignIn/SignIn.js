@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import fire from "../../config/firebase-config";
 import { Link } from "react-router-dom";
+import SignUpIcon from "../../components/SignUpIcon";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -46,9 +47,9 @@ export default function Signin() {
         </div>
         <button onClick={login}>Click to sign-in</button>
       </form>
-      <div>
+      <div style={{ paddingTop: "20px" }}>
         <Link to={"/signup"}>
-          <h1>Click here to Sign-Up </h1>
+          <SignUpIcon />
         </Link>
       </div>
     </div>
