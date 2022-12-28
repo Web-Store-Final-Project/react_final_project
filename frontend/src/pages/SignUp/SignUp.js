@@ -1,12 +1,15 @@
 import {React, useState} from 'react'
+import {useNavigate} from "react-router-dom"
 import fire from '../../config/firebase-config';
 export default function SignUp(){
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState(""); 
+  const navigate = useNavigate();
   const signup = (e) =>{
     e.preventDefault();
     fire.auth().createUserWithEmailAndPassword(email,password).then((user)=>{
-      console.log(user)
+      console.log(user);
+      navigate("/");
     }).catch((err)=>{
       console.log(err);
     });
