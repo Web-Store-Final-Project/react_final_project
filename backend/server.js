@@ -5,6 +5,10 @@ const itemRoutes = require('./routes/itemsRout.js')
 const userRoutes = require('./routes/userRout')
 const scraper  = require('./scrapers/scrapeBurton.js')
 
+
+const session = require('express-session')
+const MongoDBStore = require("connect-mongodb-session")(session);
+
 // express app
 const app = express()
 
@@ -13,6 +17,28 @@ app.use(express.json())
 
 app.use((req,res,next)=>{
     next()
+})
+
+//----------------------------------------//
+const store = new MongoDBStore({
+    uri: mongoURI,
+    collection: "mySessions",
+});
+
+app.use(
+    session({
+      secret: "secret",
+      resave: false,
+      saveUninitialized: false,
+      store: store,
+    })
+)
+
+app.get("/logout", (req,res)=>{
+    req.session.destroy((err)=>{
+        if (err) throw err;
+        res.redirect("/");
+    })
 })
 
 //routes

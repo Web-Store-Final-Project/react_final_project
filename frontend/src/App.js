@@ -9,17 +9,18 @@ import Navbar from "./components/Navbar";
 function App() {
   const [email,setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-  
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar email={email} setEmail={setEmail} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+        <Navbar email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={<AdminHome />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} />} />
+            <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} />
+            <Route path="/logout"/>
           </Routes>
         </div>
       </BrowserRouter>
