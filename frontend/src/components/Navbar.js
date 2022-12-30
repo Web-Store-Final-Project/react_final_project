@@ -5,7 +5,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "./LoginIcon";
 
 function Navbar(props){  
-// console.log("props.email = " + props.email)
 
   return (
     <>

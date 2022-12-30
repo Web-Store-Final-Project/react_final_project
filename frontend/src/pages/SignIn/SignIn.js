@@ -13,7 +13,13 @@ export default function Signin(props) {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
-        props.setEmail(email)
+        const requestOptions = {
+        method: 'POST',
+        crossDomain: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({email})
+      };
+        fetch('/api/users/signin', requestOptions)
         navigate("/");
       })
       .catch((err) => {
