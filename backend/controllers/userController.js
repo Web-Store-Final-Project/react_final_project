@@ -10,18 +10,13 @@ const getAllUsers = async(req,res)=>{
 
 //get single item
 const getUser = async(req,res)=>{
-    const email = req.params
-    console.log("email")
-    console.log(email)
-    if(!mongoose.Types.ObjectId.isValid({email})){
-        return res.status(404).json({err:'Wrong type'})
-    }
-    const user = await User.findOne(email)
+    const emailBody = req.body;
+    const email = emailBody.email
+    const user = await User.findOne({email})
     if(!user){
         return res.status(404).json({err:'No such item'})
     }else{
         console.log("user is ok")
-        console.log(user);
         res.status(200).json(user);
     }
 }

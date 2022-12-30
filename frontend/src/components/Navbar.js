@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import { Link } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
@@ -5,6 +6,7 @@ import LoginIcon from "./LoginIcon";
 
 const Navbar = () => {
   return (
+    <>
     <header>
       <div className="container">
         <Link to={"/"}>
@@ -21,6 +23,7 @@ const Navbar = () => {
         </div>
       </div>
     </header>
+    </>
   );
 };
 

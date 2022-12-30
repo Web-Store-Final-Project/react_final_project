@@ -22,7 +22,7 @@ export default function SignUp(){
       fetch('/api/users/', requestOptions)
       .then(response => response.json())
       .then(data => console.log(data));
-      //navigate("/signin");
+      navigate("/signin");
     }).catch((err)=>{
       console.log(err);
     });
