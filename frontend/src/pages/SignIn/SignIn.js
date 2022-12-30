@@ -8,19 +8,25 @@ export default function Signin(props) {
   const [password, setPassword] = useState("");
   const [email,setEmail] = useState("");
   const navigate = useNavigate();
-  const login = (e) => {
-    e.preventDefault();
-    fire
+    const login = (e) => {
+      e.preventDefault();
+      fire
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
-        props.setEmail(email)
+        const requestOptions = {
+        method: 'POST',
+        crossDomain: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({email})
+      };
+        fetch('/api/users/signin', requestOptions)
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
   return (
     <div>
       <h1>Sign-In</h1>

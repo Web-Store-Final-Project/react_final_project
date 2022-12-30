@@ -45,9 +45,7 @@ axios(url).then(response =>{
             })
         }
     })
-
-    console.log(itemsArr)
-    
+        
 }).catch(err => console.log(err))
 
 
