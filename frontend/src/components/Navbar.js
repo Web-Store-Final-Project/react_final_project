@@ -5,6 +5,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "./LoginIcon";
 
 const Navbar = (props) => {
+  useEffect(()=>{
+      console.log(props)
+  },[])
   return (
     <>
     <header>
@@ -13,9 +16,14 @@ const Navbar = (props) => {
           <HomeIcon fontSize="large" />
         </Link>
         { props.isAdmin && props.isLoggedIn &&(
+          <>
           <Link to={"/admin"}>
             <h2>Admin Page</h2>
           </Link>
+          <Link to={"/logout"}>
+            <h2>Log-Out</h2>
+          </Link>
+          </>
         )
         }
         
@@ -34,7 +42,7 @@ const Navbar = (props) => {
             </div>
           )
         }        
-
+      
       </div>
     </header>
     </>

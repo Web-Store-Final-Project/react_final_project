@@ -20,6 +20,7 @@ function App() {
             <Route path="/admin" element={<AdminHome />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} />
+            <Route path="/logout"/>
           </Routes>
         </div>
       </BrowserRouter>
