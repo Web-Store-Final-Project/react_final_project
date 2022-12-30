@@ -1,10 +1,10 @@
 require('dotenv').config()
-
 const express = require('express')
 const mongoose = require('mongoose')
+const axios = require('axios');
 const itemRoutes = require('./routes/itemsRout.js')
+const userRoutes = require('./routes/userRout')
 
-const axios = require('axios')
 const cheerio = require('cheerio')
 
 // express app
@@ -14,15 +14,15 @@ const app = express()
 app.use(express.json())
 
 app.use((req,res,next)=>{
-    console.log(req.path,res.path)
     next()
 })
 
 //routes
 app.use('/api/items' ,itemRoutes)
+app.use('/api/users' ,userRoutes)
 
-//scraping from burton
-const url = 'https://www.burton.com/us/en/c/mens-apparel-accessories?start=0&sz=24'
+const url = 'https://www.burton.com/us/en/c/mens-snowboards?start=0&sz=24'
+
 const itemsArr = []
 
 axios(url).then(response =>{
@@ -33,21 +33,25 @@ axios(url).then(response =>{
         const title = $(this).find('.product-name').text()
         const price = $(this).find('.standard-price').text()
         const imgSrc = $(this).find('.product-image').attr('src')
-        // const urlDescription = $(this).find('a').attr('href')
+        const urlDescription = $(this).find('a').attr('href')
 
         if(title !== "" && price !== "" && imgSrc !== ""){
             itemsArr.push({
                 title,
                 price,
-                imgSrc
-                // urlDescription
+                imgSrc,
+                urlDescription
             })
         }
-    })   
-    console.log(itemsArr)
-    const data = JSON.stringify(itemsArr)
+    })
 
-}).catch(err=>console.log(err))
+    console.log(itemsArr)
+    
+}).catch(err => console.log(err))
+
+
+
+//scraping from burton
     
 
 //connect to db
@@ -62,5 +66,3 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((err)=>{
     console.log(err)
 });
-
-
