@@ -16,7 +16,7 @@ const getUser = async(req,res)=>{
     if(!user){
         return res.status(404).json({err:'No such item'})
     }else{
-        console.log("user is ok")
+        console.log(user);
         res.status(200).json(user);
     }
 }

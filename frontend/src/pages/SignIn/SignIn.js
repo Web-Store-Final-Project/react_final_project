@@ -10,22 +10,16 @@ export default function Signin(props) {
   const navigate = useNavigate();
     const login = (e) => {
       e.preventDefault();
-      fire
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        const requestOptions = {
-        method: 'POST',
-        crossDomain: true,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({email})
-      };
-        fetch('/api/users/signin', requestOptions)
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      fire.auth().signInWithEmailAndPassword(email, password)
+      if (email === "Admin123@gmail.com"){
+        props.setIsAdmin(true)
+        props.setIsLoggedIn(true)
+        navigate("/admin")
+      }
+      else{
+        props.setIsLoggedIn(true)
+        navigate("/")
+      }
   }
   return (
     <div>
