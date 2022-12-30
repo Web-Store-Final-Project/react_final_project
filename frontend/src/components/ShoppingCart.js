@@ -5,7 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 export default function SimpleBadge() {
   return (
     <Badge badgeContent={4} color="primary">
-      <ShoppingCartIcon color="action" fontSize="large" />
+      <ShoppingCartIcon color="action" fontSize="medium" />
     </Badge>
   );
 }
