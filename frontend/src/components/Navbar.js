@@ -8,13 +8,13 @@ import LoginIcon from "./LoginIcon";
         <Link to={"/"}>
           <HomeIcon fontSize="large" />
         </Link>
-        <Link to={"/admin"} style={{ paddingLeft: "20px" }}>
+        <Link to={"/admin"}>
           <h2>Admin Page</h2>
         </Link>
-        <Link to={"/signin"} style={{ paddingLeft: "900px" }}>
+        <Link to={"/signin"} style={{ paddingLeft: "55%" }}>
           <LoginIcon />
         </Link>
-        <div style={{ paddingRight: "50px" }}>
+        <div style={{ paddingRight: "5%" }}>
           <ShoppingCart />
         </div>
       </div>
