@@ -16,11 +16,23 @@ function App() {
         <Navbar email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
         <div className="pages">
           <Routes>
+          {
+            isAdmin && isLoggedIn && (
+              <>
+              <Route path="/admin" element={<AdminHome />} />
+              <Route path="/logout"/>
+              </>
+            )
+          }
             <Route path="/" element={<Home />} />
-            <Route path="/admin" element={<AdminHome />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} />
-            <Route path="/logout"/>
+          {
+            !isLoggedIn && (
+              <>
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} />
+              </>
+            )
+          }  
           </Routes>
         </div>
       </BrowserRouter>
