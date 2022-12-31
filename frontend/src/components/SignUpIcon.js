@@ -5,7 +5,7 @@ import PortraitIcon from "@mui/icons-material/Portrait";
 
 export default function CustomDeleteIconChips() {
   const handleClick = () => {
-    console.info("You clicked the Chip.");
+    //console.info("You clicked the Chip.");
   };
 
   const handleDelete = () => {

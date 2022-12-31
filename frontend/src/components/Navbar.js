@@ -12,7 +12,7 @@ const Navbar = (props) => {
     <>
     <header>
       <div className="container">
-        <Link to={"/"}>
+        <Link to={"/"} amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart}>
           <HomeIcon fontSize="large" />
         </Link>
         { props.isAdmin && props.isLoggedIn &&(
@@ -38,7 +38,7 @@ const Navbar = (props) => {
         {
           props.isLoggedIn && !props.isAdmin && (
             <div style={{ paddingRight: "5%" }}>
-              <ShoppingCart />
+              <ShoppingCart amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart} />
             </div>
           )
         }        

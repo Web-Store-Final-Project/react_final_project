@@ -10,10 +10,11 @@ function App() {
   const [email,setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [amountInCart, setAmountInCart] = useState(0);
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+        <Navbar email={email} setEmail={setEmail} amountInCart={amountInCart} setAmountInCart={setAmountInCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
         <div className="pages">
           <Routes>
           {
@@ -24,7 +25,7 @@ function App() {
               </>
             )
           }
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
           {
             !isLoggedIn && (
               <>
