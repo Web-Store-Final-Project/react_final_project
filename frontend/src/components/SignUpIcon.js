@@ -3,9 +3,10 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import PortraitIcon from "@mui/icons-material/Portrait";
 
-export default function CustomDeleteIconChips() {
+export default function CustomDeleteIconChips(props) {
   const handleClick = () => {
-    //console.info("You clicked the Chip.");
+    console.info("You clicked the Chip.");
+    console.log(props.amountInCart)
   };
 
   const handleDelete = () => {
