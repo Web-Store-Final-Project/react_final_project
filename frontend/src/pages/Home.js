@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import { useItemsContext } from "../hooks/useItemsContext";
-
 //components
 import ItemDetails from "../components/ItemDetails";
 // import ItemForm from "../components/ItemForm";
-
 const Home = (props) => {
   const { items, dispatch } = useItemsContext();
 
@@ -22,6 +20,7 @@ const Home = (props) => {
   }, [dispatch]);
 
   return (
+    
     <div className="home">
       <div className="items">
         {items &&

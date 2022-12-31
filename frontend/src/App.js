@@ -6,6 +6,7 @@ import AdminHome from "./pages/AdmimHome";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Navbar from "./components/Navbar";
+import NotAuthorized from './pages/NotAuthorized/NotAuthorized';
 function App() {
   const [email,setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
@@ -20,17 +21,22 @@ function App() {
           {
             isAdmin && isLoggedIn && (
               <>
-              <Route path="/admin" element={<AdminHome />} />
+              <Route path="/admin" element={<AdminHome isAdmin={isAdmin} />} />
+              <Route path="/signin" element={<NotAuthorized/>}/>
               <Route path="/logout"/>
               </>
             )
           }
           {
             isLoggedIn && !isAdmin && (
+              <>
               <Route path={"/logout"}/>
+              <Route path="/signin" element={<NotAuthorized/>}/>
+              </>
             )
           }
             <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
+            <Route path="/admin" element={<NotAuthorized/>}/>
           {
             !isLoggedIn && (
               <>
