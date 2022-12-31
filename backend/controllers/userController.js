@@ -9,14 +9,12 @@ const getAllUsers = async(req,res)=>{
 }
 
 //get single item
-const getUser = async(req,res)=>{
-    const emailBody = req.body;
-    const email = emailBody.email
-    const user = await User.findOne({email})
+const getUser = async (req,res)=>{
+    const email = req.params.email;
+    const user = await User.findOne({email:email})
     if(!user){
         return res.status(404).json({err:'No such item'})
     }else{
-        console.log(user);
         res.status(200).json(user);
     }
 }

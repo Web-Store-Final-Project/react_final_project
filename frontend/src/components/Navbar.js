@@ -47,7 +47,7 @@ const Navbar = (props) => {
                 props.setAmountInCart(0);
               }}>Log-Out</h2>
             </Link>
-            <Link to={`profile/${props.email}`}>
+            <Link to={`/${props.email}`}>
               <h2>Profile</h2>
             </Link>
             </>

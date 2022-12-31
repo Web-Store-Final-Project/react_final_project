@@ -19,6 +19,7 @@ export default function Signin(props) {
       }
       else{
         props.setIsLoggedIn(true)
+        props.setEmail(email);
         navigate("/")
       }
   }

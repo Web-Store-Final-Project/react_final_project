@@ -1,13 +1,16 @@
 import React from 'react'
-import {useEffect} from 'react'
+import {useState,useEffect} from 'react'
 export default function Profile(props) {
+    const [fullname,setFullName] = useState("");
+    const [isAdmin,setIsAdmin] = useState("");
     useEffect(() => {
     const fetchUser = async () => {
-      const response = await fetch(`/profile/${props.email}`);
+      const response = await fetch(`/api/users/${props.email}`);
       const json = await response.json();
-
+      
       if (response.ok) {
-        console.log(json)
+        setFullName(json.fullname);
+        setIsAdmin(json.isAdmin);
       }
     };
     fetchUser();
@@ -15,7 +18,18 @@ export default function Profile(props) {
 
   return (
     <div>
-      <h1>hello {props.email}</h1>
+      <h1>Hello {fullname}</h1>
+      <h1>{props.email}</h1>
+      {
+        isAdmin && (
+          <h1>You are Admin</h1> 
+        )
+      }
+      {
+        !isAdmin && (
+          <h1>You are not Admin</h1>
+        )
+      }
     </div>
   )
 }

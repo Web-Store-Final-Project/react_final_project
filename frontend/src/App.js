@@ -32,7 +32,7 @@ function App() {
             isLoggedIn && !isAdmin && (
               <>
               <Route path={"/logout"}/>
-              <Route path={`/profile/${email}`} element={<Profile email={email}/>}/>
+              <Route path={`/${email}`} element={<Profile email={email}/>}/>
               <Route path="/signin" element={<NotAuthorized/>}/>
               </>
             )
