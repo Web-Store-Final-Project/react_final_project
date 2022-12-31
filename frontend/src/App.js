@@ -10,17 +10,35 @@ function App() {
   const [email,setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [amountInCart, setAmountInCart] = useState(0);
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+        <Navbar email={email} setEmail={setEmail} amountInCart={amountInCart} setAmountInCart={setAmountInCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
         <div className="pages">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/admin" element={<AdminHome />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} />
-            <Route path="/logout"/>
+          {
+            isAdmin && isLoggedIn && (
+              <>
+              <Route path="/admin" element={<AdminHome />} />
+              <Route path="/logout"/>
+              </>
+            )
+          }
+          {
+            isLoggedIn && !isAdmin && (
+              <Route path={"/logout"}/>
+            )
+          }
+            <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
+          {
+            !isLoggedIn && (
+              <>
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} />
+              </>
+            )
+          }  
           </Routes>
         </div>
       </BrowserRouter>

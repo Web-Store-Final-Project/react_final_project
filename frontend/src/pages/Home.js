@@ -5,7 +5,7 @@ import { useItemsContext } from "../hooks/useItemsContext";
 import ItemDetails from "../components/ItemDetails";
 // import ItemForm from "../components/ItemForm";
 
-const Home = () => {
+const Home = (props) => {
   const { items, dispatch } = useItemsContext();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Home = () => {
     <div className="home">
       <div className="items">
         {items &&
-          items.map((item) => <ItemDetails item={item} key={item._id} />)}
+          items.map((item) => <ItemDetails isLoggedIn={props.isLoggedIn} amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart} item={item} key={item._id} />)}
       </div>
     </div>
   );
