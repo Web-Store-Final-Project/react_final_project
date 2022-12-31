@@ -46,7 +46,11 @@ const Navbar = (props) => {
               <ShoppingCart amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart} />
             </div>
             <Link to={"/"}>
-              <h2 onClick={()=>props.setIsLoggedIn(false)}>Log-Out</h2>
+              <h2 onClick={()=>{
+                props.setIsLoggedIn(false)
+                props.setAmountInCart(0);
+              }
+              }>Log-Out</h2>
             </Link>
             </>
           )
