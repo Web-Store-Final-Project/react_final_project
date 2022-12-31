@@ -20,8 +20,12 @@ const Navbar = (props) => {
           <Link to={"/admin"}>
             <h2>Admin Page</h2>
           </Link>
-          <Link to={"/logout"}>
-            <h2>Log-Out</h2>
+          <Link to={"/"}>
+              <h2 onClick={()=>{
+                  props.setIsLoggedIn(false);
+                  props.setIsAdmin(false);
+                }
+            }>Log-Out</h2>
           </Link>
           </>
         )
@@ -37,9 +41,14 @@ const Navbar = (props) => {
         }
         {
           props.isLoggedIn && !props.isAdmin && (
+            <>
             <div style={{ paddingRight: "5%" }}>
               <ShoppingCart amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart} />
             </div>
+            <Link to={"/"}>
+              <h2 onClick={()=>props.setIsLoggedIn(false)}>Log-Out</h2>
+            </Link>
+            </>
           )
         }        
       

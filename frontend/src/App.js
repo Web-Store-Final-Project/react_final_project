@@ -25,6 +25,11 @@ function App() {
               </>
             )
           }
+          {
+            isLoggedIn && !isAdmin && (
+              <Route path={"/logout"}/>
+            )
+          }
             <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
           {
             !isLoggedIn && (
