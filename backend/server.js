@@ -6,8 +6,6 @@ const userRoutes = require('./routes/userRout')
 const scraper  = require('./scrapers/scrapeBurton.js')
 
 
-const session = require('express-session')
-const MongoDBStore = require("connect-mongodb-session")(session);
 
 // express app
 const app = express()
@@ -20,30 +18,24 @@ app.use((req,res,next)=>{
 })
 
 //----------------------------------------//
-const store = new MongoDBStore({
-    uri: mongoURI,
-    collection: "mySessions",
-});
-
-app.use(
-    session({
-      secret: "secret",
-      resave: false,
-      saveUninitialized: false,
-      store: store,
-    })
-)
-
-app.get("/logout", (req,res)=>{
-    req.session.destroy((err)=>{
-        if (err) throw err;
-        res.redirect("/");
-    })
-})
-
 //routes
 app.use('/api/items' ,itemRoutes)
 app.use('/api/users' ,userRoutes)
+
+const getUser = async(req,res)=>{
+    const emailBody = req.body;
+    const email = emailBody.email
+    const user = await User.findOne({email})
+    if(!user){
+        return res.status(404).json({err:'No such item'})
+    }else{
+        console.log(user);
+        res.status(200).json(user);
+    }
+}
+
+
+app.get("/profile/:email",getUser);
 
 //scraping from burton
 scraper.apply()    
