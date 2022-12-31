@@ -21,7 +21,7 @@ async function getScrapedData(){
                 })
             }
         })   
-        console.log(itemsArr)
+        // console.log(itemsArr)
     });
     
     

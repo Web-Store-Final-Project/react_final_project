@@ -7,6 +7,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Navbar from "./components/Navbar";
 import NotAuthorized from './pages/NotAuthorized/NotAuthorized';
+import Profile from './pages/Profile/Profile';
 function App() {
   const [email,setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
@@ -31,6 +32,7 @@ function App() {
             isLoggedIn && !isAdmin && (
               <>
               <Route path={"/logout"}/>
+              <Route path={`/${email}`} element={<Profile email={email}/>}/>
               <Route path="/signin" element={<NotAuthorized/>}/>
               </>
             )

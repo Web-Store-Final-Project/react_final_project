@@ -45,14 +45,16 @@ const Navbar = (props) => {
               <h2 onClick={()=>{
                 props.setIsLoggedIn(false)
                 props.setAmountInCart(0);
-              }
-              }>Log-Out</h2>
+              }}>Log-Out</h2>
+            </Link>
+            <Link to={`/${props.email}`}>
+              <h2>Profile</h2>
             </Link>
             </>
           )
         }        
+      </div>  
       
-      </div>
     </header>
     </>
   );

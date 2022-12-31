@@ -14,10 +14,12 @@ export default function Signin(props) {
       if (email === "Admin123@gmail.com"){
         props.setIsAdmin(true)
         props.setIsLoggedIn(true)
+        props.setEmail(email);
         navigate("/admin")
       }
       else{
         props.setIsLoggedIn(true)
+        props.setEmail(email);
         navigate("/")
       }
   }
