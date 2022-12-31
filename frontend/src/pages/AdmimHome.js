@@ -4,8 +4,8 @@ import { useItemsContext } from "../hooks/useItemsContext";
 //components
 import ItemDetails from "../components/ItemDetails";
 import ItemForm from "../components/ItemForm";
-
-const AdminHome = () => {
+import NotAuthorized from './NotAuthorized/NotAuthorized'
+const AdminHome = (props) => {
   const { items, dispatch } = useItemsContext();
 
   useEffect(() => {
@@ -22,13 +22,26 @@ const AdminHome = () => {
   }, [dispatch]);
 
   return (
-    <div className="home">
-      <div className="items">
+    <>
+    {
+      !props.isAdmin && (
+        <>
+        <NotAuthorized/>
+        </>
+      )
+    }
+    {
+      props.isAdmin && (
+        <>
+        <div className="items">
         {items &&
           items.map((item) => <ItemDetails item={item} key={item._id} />)}
-      </div>
-      <ItemForm />
-    </div>
+        </div>
+        <ItemForm />
+        </>
+      )
+    }
+    </>
   );
 };
 
