@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Navbar from "./components/Navbar";
 import NotAuthorized from './pages/NotAuthorized/NotAuthorized';
 import Profile from './pages/Profile/Profile';
+import AdminAccountManagement from './pages/AdminAccountManagement/AdminAccountManagement';
 function App() {
   const [email,setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
@@ -37,8 +38,13 @@ function App() {
               </>
             )
           }
-            <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
+          {
+            !isLoggedIn && !isAdmin && (
+              <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
+            )
+          }
             <Route path="/admin" element={<NotAuthorized/>}/>
+            <Route path="/adminManagement" element={<AdminAccountManagement isAdmin={isAdmin} email={email}/>}/>
           {
             !isLoggedIn && (
               <>
