@@ -26,11 +26,6 @@ app.use((req,res,next)=>{
 app.use('/api/items' ,itemRoutes)
 app.use('/api/users' ,userRoutes)
 
-//scraping from burton
-burtonScraper.apply()    
-billabongScraper.apply()    
-horseFeathersScraper.apply()    
-
 //connect to db
 mongoose.set('strictQuery',true);
 mongoose.connect(process.env.MONGO_URI)
@@ -38,8 +33,13 @@ mongoose.connect(process.env.MONGO_URI)
         //listen for requests
         app.listen(process.env.PORT,()=>{
         console.log('connected to db & listening on port',process.env.PORT ,'!!');
+        })
     })
-})
-.catch((err)=>{
+    .catch((err)=>{
     console.log(err)
 });
+
+//scraping
+billabongScraper.apply()    
+horseFeathersScraper.apply()    
+burtonScraper.apply()

@@ -9,15 +9,19 @@ const itemSchema = new Schema({
     },
     description:{
         type:String,
-        required:true
+        required:false
     },
     price:{
-        type:Number,
+        type:String,
         required:true
     },
     imgPath:{
         type:String,
         required:true
+    },
+    scrippedSiteName:{
+        type:String,
+        required:false,
     },
     date: {
         type: String,
