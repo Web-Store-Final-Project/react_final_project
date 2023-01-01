@@ -8,13 +8,18 @@ const Navbar = (props) => {
     <>
     <header>
       <div className="container">
-        <Link to={"/"} amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart}>
-          <HomeIcon fontSize="large" />
-        </Link>
+      <Link to={"/"} amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart}>
+        <HomeIcon fontSize="large" />
+      </Link>
+    
+        
         { props.isAdmin && props.isLoggedIn &&(
           <>
           <Link to={"/admin"}>
             <h2>Admin Page</h2>
+          </Link>
+          <Link to={"/adminManagement"}>
+            <h2>Dashboard</h2>
           </Link>
           <Link to={"/"}>
               <h2 onClick={()=>{
