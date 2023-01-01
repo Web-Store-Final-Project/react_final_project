@@ -21,9 +21,8 @@ async function getScrapedData(){
                 })
             }
         })   
-        // console.log(itemsArr)
+        console.log(itemsArr)
+        console.log("================ " + itemsArr.length  + " scraped burton's items" + " ================")   
     });
-    
-    
 } 
 module.exports = getScrapedData
