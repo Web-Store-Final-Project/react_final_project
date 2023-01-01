@@ -3,7 +3,10 @@ const express = require('express')
 const mongoose = require('mongoose')
 const itemRoutes = require('./routes/itemsRout.js')
 const userRoutes = require('./routes/userRout')
-const scraper  = require('./scrapers/scrapeBurton.js')
+const burtonScraper  = require('./scrapers/scrapeBurton.js')
+const billabongScraper  = require('./scrapers/scrapeBillabong.js')
+const horseFeathersScraper  = require('./scrapers/scrapeHorsefeathers.js')
+
 const User = require('./models/User');
 
 
@@ -24,7 +27,9 @@ app.use('/api/items' ,itemRoutes)
 app.use('/api/users' ,userRoutes)
 
 //scraping from burton
-scraper.apply()    
+burtonScraper.apply()    
+billabongScraper.apply()    
+horseFeathersScraper.apply()    
 
 //connect to db
 mongoose.set('strictQuery',true);
