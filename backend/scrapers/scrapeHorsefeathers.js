@@ -1,5 +1,7 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
+const mongoose = require('mongoose')
+const Item = require('../models/itemModel')
 
 const url = 'https://www.horsefeathers.eu/mens/snowwear/jackets/'
 const itemsArr = []
@@ -15,17 +17,35 @@ async function getScrapedData(){
             const imgSrc = $(this).find('img').attr('src')
 
 
-            const price =  tempPrice.replace(/\n/g, '').trim()
+            const price =  tempPrice.replace(/\n/g, '').replace("€","").trim()
             const title = tempTitle.replace(/\n/g,'').trim()
-            itemsArr.push({
-                title,
-                price,
-                imgSrc
-            })
+            if(title !== "" && price !== "" && imgSrc !== ""){
+                itemsArr.push({
+                    title,
+                    price,
+                    imgSrc
+                })
+            }
         })   
         console.log(itemsArr)
         console.log("================ " + itemsArr.length  + " scraped horseFethers's items" + " ================")   
-     });
+        itemsArr.forEach(item => {
+            // postItem(item)
+        });
+
+        async function postItem(item){
+            mongoose.connect(process.env.MONGO_URI)
+            const myItem = new Item({
+                title:item.title,
+                price:item.price,
+                imgPath:item.imgSrc,
+                scrippedSiteName:'BURTON',
+                date:Date.now()
+            })
+            console.log(myItem)
+            await myItem.save()
+        }
+    });
     
 } 
 module.exports = getScrapedData
