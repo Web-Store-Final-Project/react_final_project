@@ -34,9 +34,9 @@ header a {
 
 /* homepage */
 .home {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 100px;
+  gap: 100px; */
 }
 .item-details {
   background: #fff;
@@ -67,6 +67,8 @@ header a {
   color: rgb(197, 6, 6);
 }
 .imgItem {
+  position: relative;
+  left: 40%;
   height: 250px;
   width: 250px;
   opacity: 75%;
@@ -124,4 +126,10 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+}
+
+.cart {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
 }

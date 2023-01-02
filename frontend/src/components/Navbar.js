@@ -48,11 +48,11 @@ const Navbar = (props) => {
           )}
           {props.isLoggedIn && !props.isAdmin && (
             <>
+              <Link to={`/${props.email}`}>
+                <h2>Profile</h2>
+              </Link>
               <Link to={"/cart"} style={{ paddingRight: "5%" }}>
-                <ShoppingCart
-                  amountInCart={props.amountInCart}
-                  setAmountInCart={props.setAmountInCart}
-                />
+                <ShoppingCart amountInCart={props.amountInCart} />
               </Link>
               <Link to={"/"}>
                 <h2
@@ -63,9 +63,6 @@ const Navbar = (props) => {
                 >
                   Log-Out
                 </h2>
-              </Link>
-              <Link to={`/${props.email}`}>
-                <h2>Profile</h2>
               </Link>
             </>
           )}

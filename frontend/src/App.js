@@ -14,8 +14,8 @@ function App() {
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [amountInCart, setAmountInCart] = useState(0);
   const [cart, setCart] = useState([]);
+  const [amountInCart, setAmountInCart] = useState(0 + cart.length);
 
   return (
     <div className="App">
@@ -24,7 +24,6 @@ function App() {
           email={email}
           setEmail={setEmail}
           amountInCart={amountInCart}
-          setAmountInCart={setAmountInCart}
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           isAdmin={isAdmin}
@@ -47,7 +46,18 @@ function App() {
                 <Route path={"/logout"} />
                 <Route path={`/${email}`} element={<Profile email={email} />} />
                 <Route path="/signin" element={<NotAuthorized />} />
-                <Route path="/cart" element={<Cart />} />
+                <Route
+                  path="/cart"
+                  element={
+                    <Cart
+                      isLoggedIn={isLoggedIn}
+                      amountInCart={amountInCart}
+                      setAmountInCart={setAmountInCart}
+                      cart={cart}
+                      setCart={setCart}
+                    />
+                  }
+                />
               </>
             )}
             {isLoggedIn && !isAdmin && (

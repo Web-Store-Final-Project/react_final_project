@@ -1,27 +1,26 @@
 import { useItemsContext } from "../hooks/useItemsContext";
 //date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+// props.setSelectedProduct(prev=>{ return [...result,{
+//     name: props.title,
+//     amount: props.amount,
+//     url: props.imagePath,
+//     description: props.description,
+//     secondUrl: props.secondUrl
+//   }]})
 
-const ItemDetails = (props) => {
+const ItemDetailsCart = (props) => {
   const { dispatch } = useItemsContext();
-  const addToCart = () => {
+  const removeFromCart = () => {
     const cartArray = Object.values(props.cart);
+    const index = cartArray.indexOf(props.item);
+    cartArray.splice(index, 1);
     props.setCart((prev) => {
-      return [...cartArray, props.item];
+      return [...cartArray];
     });
     props.setAmountInCart(cartArray.length);
     console.log(props.cart);
     console.log(props.amountInCart);
-  };
-  const handleClick = async () => {
-    const response = await fetch("/api/items/" + props.item._id, {
-      method: "DELETE",
-    });
-    const json = await response.json();
-
-    if (response.ok) {
-      dispatch({ type: "DELETE_ITEM", payload: json });
-    }
   };
 
   return (
@@ -43,29 +42,11 @@ const ItemDetails = (props) => {
         })}
       </p> */}
       {/* {props.isLoggedIn && <button onClick={addToCart}>Add To Cart</button>} */}
-      {props.isAdmin && (
-        <span onClick={handleClick}>
+      {!props.isAdmin && props.isLoggedIn && (
+        <span onClick={removeFromCart}>
           <img
             className="deleteIcon"
             src="https://cdn-icons-png.flaticon.com/512/216/216760.png"
-            alt=""
-          ></img>
-        </span>
-      )}
-      {!props.isAdmin && props.isLoggedIn && (
-        <span onClick={addToCart}>
-          <img
-            className="addToCartIcon"
-            src="https://cdn-icons-png.flaticon.com/512/3405/3405668.png"
-            alt=""
-          ></img>
-        </span>
-      )}
-      {!props.isAdmin && props.isLoggedIn && props.isInCart && (
-        <span onClick={addToCart}>
-          <img
-            className="addToCartIcon"
-            src="https://cdn-icons-png.flaticon.com/512/3405/3405668.png"
             alt=""
           ></img>
         </span>
@@ -74,4 +55,4 @@ const ItemDetails = (props) => {
   );
 };
 
-export default ItemDetails;
+export default ItemDetailsCart;
