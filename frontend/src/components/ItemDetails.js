@@ -1,6 +1,4 @@
 import { useItemsContext } from "../hooks/useItemsContext";
-//date fns
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const ItemDetails = (props) => {
   const { dispatch } = useItemsContext();
@@ -9,7 +7,7 @@ const ItemDetails = (props) => {
     props.setCart((prev) => {
       return [...cartArray, props.item];
     });
-    props.setAmountInCart(cartArray.length);
+    props.setAmountInCart(cartArray.length+1);
     console.log(props.cart);
     console.log(props.amountInCart);
   };

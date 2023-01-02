@@ -1,16 +1,4 @@
-import { useItemsContext } from "../hooks/useItemsContext";
-//date fns
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-// props.setSelectedProduct(prev=>{ return [...result,{
-//     name: props.title,
-//     amount: props.amount,
-//     url: props.imagePath,
-//     description: props.description,
-//     secondUrl: props.secondUrl
-//   }]})
-
 const ItemDetailsCart = (props) => {
-  const { dispatch } = useItemsContext();
   const removeFromCart = () => {
     const cartArray = Object.values(props.cart);
     const index = cartArray.indexOf(props.item);
