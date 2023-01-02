@@ -27,10 +27,9 @@ async function getScrapedData(){
                 })
             }
         })   
-        console.log(itemsArr)
         console.log("================ " + itemsArr.length  + " scraped billabong's items" + " ================") 
         itemsArr.forEach(item => {
-            // postItem(item)
+            postItem(item)
         });
 
         async function postItem(item){
@@ -38,9 +37,10 @@ async function getScrapedData(){
             const myItem = new Item({
                 title:item.title,
                 price:item.price,
-                imgPath:item.imgSrc
+                imgPath:item.imgSrc,
+                scrippedSiteName:'BILLABONG',
+                date:Date.now()
             })
-            console.log(myItem)
             await myItem.save()
         }
     });  
