@@ -25,11 +25,10 @@ async function getScrapedData(){
                 })
             }
         })   
-        console.log(itemsArr)
         console.log("================ " + itemsArr.length  + " scraped burton's items" + " ================") 
 
         itemsArr.forEach(item => {
-            // postItem(item)
+            postItem(item)
         });
 
         async function postItem(item){
@@ -41,7 +40,6 @@ async function getScrapedData(){
                 scrippedSiteName:'BURTON',
                 date:Date.now()
             })
-            console.log(myItem)
             await myItem.save()
         }
     });

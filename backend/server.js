@@ -6,7 +6,7 @@ const userRoutes = require('./routes/userRout')
 const burtonScraper  = require('./scrapers/scrapeBurton.js')
 const billabongScraper  = require('./scrapers/scrapeBillabong.js')
 const horseFeathersScraper  = require('./scrapers/scrapeHorsefeathers.js')
-
+const Item = require('./models/itemModel')
 const User = require('./models/User');
 
 
@@ -39,7 +39,30 @@ mongoose.connect(process.env.MONGO_URI)
     console.log(err)
 });
 
-//scraping
-billabongScraper.apply()    
-horseFeathersScraper.apply()    
-burtonScraper.apply()
+//scraping once a week
+checkForScrape()
+async function checkForScrape(){
+    const nowInMs = Date.now()
+    const weekInMs = 604800000
+    
+    const beforeWeekMs = nowInMs - weekInMs
+    const scrapedItem = await Item.findOne({ scrippedSiteName: 'BURTON' }, 'date').exec();
+    if(scrapedItem === null || scrapedItem.date < beforeWeekMs){
+        Item.deleteMany({scrippedSiteName:'BURTON'},function(err){
+            if(err) console.log(err)
+            console.log("deleted successfuly")
+        })
+        Item.deleteMany({scrippedSiteName:'HORSE'},function(err){
+            if(err) console.log(err)
+            console.log("deleted successfuly")
+        })
+        Item.deleteMany({scrippedSiteName:'BILLABONG'},function(err){
+            if(err) console.log(err)
+            console.log("deleted successfuly")
+        })
+
+        billabongScraper.apply()    
+        horseFeathersScraper.apply()    
+        burtonScraper.apply()
+    }
+}
