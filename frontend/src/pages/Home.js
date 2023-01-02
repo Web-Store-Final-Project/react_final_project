@@ -20,11 +20,20 @@ const Home = (props) => {
   }, [dispatch]);
 
   return (
-    
     <div className="home">
       <div className="items">
         {items &&
-          items.map((item) => <ItemDetails isLoggedIn={props.isLoggedIn} amountInCart={props.amountInCart} setAmountInCart={props.setAmountInCart} item={item} key={item._id} />)}
+          items.map((item) => (
+            <ItemDetails
+              isLoggedIn={props.isLoggedIn}
+              amountInCart={props.amountInCart}
+              setAmountInCart={props.setAmountInCart}
+              item={item}
+              key={item._id}
+              cart={props.cart}
+              setCart={props.setCart}
+            />
+          ))}
       </div>
     </div>
   );
