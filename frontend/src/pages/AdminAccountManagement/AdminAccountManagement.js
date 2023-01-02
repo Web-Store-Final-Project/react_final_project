@@ -56,7 +56,7 @@ export default function AdminAccountManagement(props) {
                 All Users Table
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Ima Shel Ambar Ali
+                Ima Shel Ambar Aliiii
               </Typography>
             </Box>
           </Modal>
