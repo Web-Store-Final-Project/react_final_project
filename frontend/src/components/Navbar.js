@@ -12,7 +12,6 @@ const Navbar = (props) => {
         <HomeIcon fontSize="large" />
       </Link>
     
-        
         { props.isAdmin && props.isLoggedIn &&(
           <>
           <Link to={"/admin"}>

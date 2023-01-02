@@ -39,15 +39,16 @@ function App() {
             )
           }
           {
-            !isLoggedIn && !isAdmin && (
+            isLoggedIn && !isAdmin && (
               <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
             )
           }
             <Route path="/admin" element={<NotAuthorized/>}/>
             <Route path="/adminManagement" element={<AdminAccountManagement isAdmin={isAdmin} email={email}/>}/>
           {
-            !isLoggedIn && (
+            !isLoggedIn && !isAdmin && (
               <>
+                <Route path="/" element={<Home isLoggedIn={isLoggedIn} amountInCart={amountInCart} setAmountInCart={setAmountInCart} />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/signin" element={<SignIn email={email} setEmail={setEmail} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} />
               </>
