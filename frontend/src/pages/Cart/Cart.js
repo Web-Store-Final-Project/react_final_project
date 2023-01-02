@@ -1,9 +1,23 @@
-import React from "react";
+import { React, useState } from "react";
+import ItemDetailsCart from "../../components/itemDetailsCart";
 
-export default function Cart() {
+export default function Cart(props) {
   return (
-    <div>
-      <h1>This is the cart page</h1>;
+    <div className="cart">
+      <div className="items">
+        {props.cart &&
+          props.cart.map((item) => (
+            <ItemDetailsCart
+              isLoggedIn={props.isLoggedIn}
+              amountInCart={props.amountInCart}
+              setAmountInCart={props.setAmountInCart}
+              item={item}
+              key={item._id}
+              cart={props.cart}
+              setCart={props.setCart}
+            />
+          ))}
+      </div>
     </div>
   );
 }
