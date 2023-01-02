@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import fire from "../../config/firebase-config";
 import { Link } from "react-router-dom";
 import SignUpIcon from "../../components/SignUpIcon";
-import NotAuthorized from '../NotAuthorized/NotAuthorized';
 export default function Signin(props) {
   const [password, setPassword] = useState("");
   const [email,setEmail] = useState("");
