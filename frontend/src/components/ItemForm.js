@@ -7,9 +7,10 @@ const ItemForm = ()=>{
     const {dispatch} = useItemsContext()
 
     const[title,setTitle] = useState('')
-    const[description,setDescription] = useState('')
+    const[brand,setBrand] = useState('')
     const[price,setPrice] = useState('')
-    const[imgPath,setImgPath] = useState('')
+    const[imgPath1,setImgPath1] = useState('')
+    const[imgPath2,setImgPath2] = useState('')
     const[error,setError] = useState(null)
     const[emptyFields,setEmptyFields] = useState([])
     // const[date,setDate] = useState('')
@@ -17,7 +18,7 @@ const ItemForm = ()=>{
     const handleSubmit = async (event) =>{
         event.preventDefault()
 
-        const item = {title,description,price,imgPath}
+        const item = {title,price,brand,imgPath1,imgPath2}
 
         const response = await fetch('/api/items',{
             method:'POST',
@@ -36,7 +37,7 @@ const ItemForm = ()=>{
             setEmptyFields([])
             setError(null)
             setTitle('')
-            setDescription('')
+            setBrand('')
             setPrice('')
             console.log("New item added")
             dispatch({type:'CREATE_ITEM',payload:json})
@@ -54,12 +55,12 @@ const ItemForm = ()=>{
              className={emptyFields.includes('title') ? 'error' : ''}
             />
 
-            <label>Item Description:</label>
+            <label>Item Brand:</label>
             <input
              type="text"
-             onChange={(event)=>setDescription(event.target.value)}
-             value={description}
-             className={emptyFields.includes('description') ? 'error' : ''}
+             onChange={(event)=>setBrand(event.target.value)}
+             value={brand}
+             className={emptyFields.includes('brand') ? 'error' : ''}
             />
 
             <label>Item Price:</label>
@@ -70,12 +71,20 @@ const ItemForm = ()=>{
              className={emptyFields.includes('price') ? 'error' : ''}
             />
 
-            <label>Item image(URL):</label>
+            <label>Item image 1(URL):</label>
             <input
              type="text"
-             onChange={(event)=>setImgPath(event.target.value)}
-             value={imgPath}
-             className={emptyFields.includes('imgPath') ? 'error' : ''}
+             onChange={(event)=>setImgPath1(event.target.value)}
+             value={imgPath1}
+             className={emptyFields.includes('imgPath1') ? 'error' : ''}
+            />
+
+            <label>Item image 2(URL):</label>
+            <input
+             type="text"
+             onChange={(event)=>setImgPath2(event.target.value)}
+             value={imgPath2}
+             className={emptyFields.includes('imgPath2') ? 'error' : ''}
             />
 
             <button>Add Item</button>

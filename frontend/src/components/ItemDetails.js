@@ -26,14 +26,15 @@ const ItemDetails = (props) => {
     <div className="item-details">
       <h4>{props.item.title}</h4>
       <p>
-        <strong>Description: </strong>
-        {props.item.description}
+        <strong>Brand: </strong>
+        {props.item.brand}
       </p>
       <p>
         <strong>Price: </strong>
         {props.item.price}$
       </p>
-      <img className="imgItem" src={props.item.imgPath} alt=""></img>
+      <img className="imgItem" src={props.item.imgPath1} alt=""></img>
+      <img className="imgItem" src={props.item.imgPath2} alt=""></img>
       {/* <p>
         uploaded{" "}
         {formatDistanceToNow(new Date(props.item.createdAt), {

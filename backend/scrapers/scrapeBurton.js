@@ -3,7 +3,7 @@ const cheerio = require('cheerio')
 const mongoose = require('mongoose')
 const Item = require('../models/itemModel')
 
-const url = 'https://www.burton.com/us/en/c/mens-apparel-accessories?start=0&sz=24'
+const url = 'https://www.burton.com/us/en/c/mens-snowboard-jackets'
 const itemsArr = []
 async function getScrapedData(){
     axios(url).then(response =>{
@@ -13,20 +13,20 @@ async function getScrapedData(){
         $('.product-tile' ,html).each(function(){
             const title = $(this).find('.product-name').text()
             const price1 = $(this).find('.standard-price').text()
-            const imgSrc = $(this).find('.product-image').attr('src')
+            const imgSrc1 = $(this).find('img').attr('src')
+            const imgSrc2 = imgSrc1.replace("_4", "_5")
     
             const price = price1.replace("$","")
 
-            if(title !== "" && price !== "" && imgSrc !== ""){
+            if(title !== "" && price !== "" && imgSrc1 !== "" && imgSrc1 !== imgSrc2){
                 itemsArr.push({
                     title,
                     price,
-                    imgSrc
+                    imgSrc1,
+                    imgSrc2
                 })
             }
         })   
-        console.log("================ " + itemsArr.length  + " scraped burton's items" + " ================") 
-
         itemsArr.forEach(item => {
             postItem(item)
         });
@@ -36,8 +36,10 @@ async function getScrapedData(){
             const myItem = new Item({
                 title:item.title,
                 price:item.price,
-                imgPath:item.imgSrc,
+                imgPath1:item.imgSrc1,
+                imgPath2:item.imgSrc2,
                 scrippedSiteName:'BURTON',
+                brand:'BURTON',
                 date:Date.now()
             })
             await myItem.save()

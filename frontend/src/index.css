@@ -67,8 +67,9 @@ header a {
   color: rgb(197, 6, 6);
 }
 .imgItem {
-  position: relative;
-  left: 40%;
+  /* position: relative; */
+  padding: 6px;
+  /* left: 40%; */
   height: 250px;
   width: 250px;
   opacity: 75%;
