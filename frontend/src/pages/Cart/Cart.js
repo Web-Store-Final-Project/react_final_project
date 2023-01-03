@@ -1,11 +1,18 @@
-import { React, useState } from "react";
+import { React } from "react";
 import ItemDetailsCart from "../../components/itemDetailsCart";
-
+import NotAuthorized from '../NotAuthorized/NotAuthorized';
 export default function Cart(props) {
   return (
+    <>
+    {
+       !props.isLoggedIn && (
+          <NotAuthorized/>
+        )
+    }
     <div className="cart">
       <div className="items">
-        {props.cart &&
+        {
+          props.isLoggedIn && props.cart &&
           props.cart.map((item) => (
             <ItemDetailsCart
               isLoggedIn={props.isLoggedIn}
@@ -19,5 +26,6 @@ export default function Cart(props) {
           ))}
       </div>
     </div>
+    </>
   );
 }
