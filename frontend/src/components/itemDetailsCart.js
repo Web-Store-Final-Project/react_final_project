@@ -22,7 +22,8 @@ const ItemDetailsCart = (props) => {
         <strong>Price: </strong>
         {props.item.price}$
       </p>
-      <img className="imgItem" src={props.item.imgPath} alt=""></img>
+      <img className="imgItem" src={props.item.imgPath1} alt=""></img>
+      <img className="imgItem" src={props.item.imgPath2} alt=""></img>
       {/* <p>
         uploaded{" "}
         {formatDistanceToNow(new Date(props.item.createdAt), {
