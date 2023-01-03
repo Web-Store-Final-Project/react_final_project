@@ -15,13 +15,21 @@ const itemSchema = new Schema({
         type:String,
         required:true
     },
-    imgPath:{
+    imgPath1:{
         type:String,
         required:true
+    },
+    imgPath2:{
+        type:String,
+        required:false
     },
     scrippedSiteName:{
         type:String,
         required:false,
+    },
+    brand:{
+        type:String,
+        required:true,
     },
     date: {
         type: String,
