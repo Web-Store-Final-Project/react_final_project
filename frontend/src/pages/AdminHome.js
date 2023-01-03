@@ -4,7 +4,7 @@ import { useItemsContext } from "../hooks/useItemsContext";
 //components
 import ItemDetails from "../components/ItemDetails";
 import ItemForm from "../components/ItemForm";
-import NotAuthorized from './NotAuthorized/NotAuthorized'
+import NotAuthorized from "./NotAuthorized/NotAuthorized";
 const AdminHome = (props) => {
   const { items, dispatch } = useItemsContext();
 
@@ -23,24 +23,26 @@ const AdminHome = (props) => {
 
   return (
     <>
-    {
-      !props.isAdmin && (
+      {!props.isAdmin && (
         <>
-        <NotAuthorized/>
+          <NotAuthorized />
         </>
-      )
-    }
-    {
-      props.isAdmin && (
+      )}
+      {props.isAdmin && (
         <>
-        <div className="items">
-        {items &&
-          items.map((item) => <ItemDetails item={item} key={item._id} />)}
-        </div>
-        <ItemForm />
+          <ItemForm />
+          <div className="items">
+            {items &&
+              items.map((item) => (
+                <ItemDetails
+                  item={item}
+                  key={item._id}
+                  isAdmin={props.isAdmin}
+                />
+              ))}
+          </div>
         </>
-      )
-    }
+      )}
     </>
   );
 };

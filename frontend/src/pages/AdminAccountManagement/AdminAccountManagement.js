@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
+import UsersTable from '../../components/UsersTable';
   const style = {
     position: 'absolute',
     top: '50%',
@@ -16,6 +16,8 @@ import Modal from '@mui/material/Modal';
     boxShadow: 24,
     p: 4,
   };
+
+
 export default function AdminAccountManagement(props) {
   const [fullname,setFullName] = useState("");
     const [open, setOpen] = useState(false);
@@ -56,7 +58,7 @@ export default function AdminAccountManagement(props) {
                 All Users Table
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Ima Shel Ambar Aliiii
+                <UsersTable/>
               </Typography>
             </Box>
           </Modal>
