@@ -48,7 +48,7 @@ async function checkForScrape(){
     
     const beforeWeekMs = nowInMs - weekInMs
     const scrapedItem = await Item.findOne({ scrippedSiteName: 'BURTON' }, 'date').exec();
-    if(scrapedItem === null || scrapedItem.date < nowInMs){
+    if(scrapedItem === null || scrapedItem.date < beforeWeekMs){
         Item.deleteMany({scrippedSiteName:'BURTON'},function(err){
             if(err) console.log(err)
             console.log("deleted successfuly")
