@@ -80,15 +80,39 @@ header a {
   transition-duration: 0.7s;
 }
 .imgItem:hover {
-  transition-duration: 0.7s;
-  height: 400px;
-  width: 400px;
+  transition-duration: 0.5s;
+  height: 300px;
+  width: 300px;
   opacity: 100%;
+}
+
+.item-details-imgs {
+  position: relative;
+  left: 200px;
+}
+
+.item-details-info {
+  position: absolute;
+  top: 80px;
+  line-height: 3;
 }
 
 .deleteIcon {
   height: 35px;
   width: 35px;
+}
+
+.hide {
+  display: none;
+  position: absolute;
+  top: 80px;
+  right: 3px;
+  background-color: #ddd;
+}
+
+.itemClickIcon:hover + .hide {
+  display: block;
+  color: rgb(0, 0, 0);
 }
 
 .addToCartIcon {
@@ -151,11 +175,14 @@ input.error {
 .priceSliderBox {
   width: 200px;
   position: relative;
-  /* bottom: 20px; */
   left: 20px;
+  bottom: 5px;
 }
 
 .priceSliderBoxText {
   position: relative;
   left: 70px;
+  top: 20px;
+  color: rgb(91, 91, 91);
+  font-size: 15px;
 }
