@@ -138,3 +138,24 @@ input.error {
   grid-template-columns: 3fr 1fr;
   gap: 100px;
 }
+
+.filterBar {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.priceSliderBox {
+  width: 200px;
+  position: relative;
+  /* bottom: 20px; */
+  left: 20px;
+}
+
+.priceSliderBoxText {
+  position: relative;
+  left: 70px;
+}
