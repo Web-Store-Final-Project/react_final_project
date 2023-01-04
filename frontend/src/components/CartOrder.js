@@ -12,6 +12,7 @@ export default function CartOrder(props) {
     <div>
         <h1>Order Now!</h1>
         <h4>Total: {total}$</h4>
+        <button className="btnOrder">Order</button>
     </div>
   )
 }
