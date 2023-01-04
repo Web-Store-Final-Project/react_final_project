@@ -188,10 +188,20 @@ input.error {
 }
 .result{
   width: 250px;
+  background-color: white;
   height: fit-content;
   text-align: center;
-  margin-top: 25px;
-  border: 1px solid black;
+  margin-top: 23px;
+  border-radius: 5px;
+  box-shadow: #555;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
   position: absolute;
-  margin-left: 900px;
+  margin-left: 72%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnOrder{
+  margin-bottom: 10%;
 }

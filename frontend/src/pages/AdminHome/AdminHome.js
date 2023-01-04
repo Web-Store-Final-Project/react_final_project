@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useItemsContext } from "../hooks/useItemsContext";
+import { useItemsContext } from '../../hooks/useItemsContext'
 
 //components
-import ItemDetails from "../components/ItemDetails";
-import ItemForm from "../components/ItemForm";
-import NotAuthorized from "./NotAuthorized/NotAuthorized";
+import ItemDetails from '../Home/components/ItemDetails';
+import ItemForm from "../AdminHome/components/ItemForm";
+import NotAuthorized from "../NotAuthorized/NotAuthorized";
 const AdminHome = (props) => {
   const { items, dispatch } = useItemsContext();
 

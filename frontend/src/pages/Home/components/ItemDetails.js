@@ -1,4 +1,4 @@
-import { useItemsContext } from "../hooks/useItemsContext";
+import { useItemsContext } from '../../../hooks/useItemsContext';
 
 
 const ItemDetails = (props) => {
@@ -57,7 +57,7 @@ const ItemDetails = (props) => {
               alt=""
             ></img>
           </span>
-          <div class="hide">Delete item from DB</div>
+          <div className="hide">Delete item from DB</div>
         </>
       )}
       {!props.isAdmin && props.isLoggedIn && (

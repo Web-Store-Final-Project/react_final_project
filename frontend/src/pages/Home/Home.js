@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useItemsContext } from "../hooks/useItemsContext";
+import { useItemsContext } from "../../hooks/useItemsContext";
 //components
-import ItemDetails from "../components/ItemDetails";
-import FilterBrand from "../components/FilterBrand";
-import FilterCategory from "../components/FilterCategory";
-import FilterPrice from "../components/FilterPrice";
-import FilterSearchBar from "../components/FilterSearchBar";
+import ItemDetails from "../Home/components/ItemDetails";
+import FilterBrand from "../Home/components/FilterBrand";
+import FilterCategory from "../Home/components/FilterCategory";
+import FilterPrice from "../Home/components/FilterPrice";
+import FilterSearchBar from "../Home/components/FilterSearchBar";
 // import ItemForm from "../components/ItemForm";
 const Home = (props) => {
   const { items, dispatch } = useItemsContext();
