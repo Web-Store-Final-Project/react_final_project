@@ -7,7 +7,7 @@ const ItemDetails = (props) => {
     props.setCart((prev) => {
       return [...cartArray, props.item];
     });
-    props.setAmountInCart(cartArray.length+1);
+    props.setAmountInCart(cartArray.length + 1);
     console.log(props.cart);
     console.log(props.amountInCart);
   };
@@ -25,16 +25,20 @@ const ItemDetails = (props) => {
   return (
     <div className="item-details">
       <h4>{props.item.title}</h4>
-      <p>
-        <strong>Brand: </strong>
-        {props.item.brand}
-      </p>
-      <p>
-        <strong>Price: </strong>
-        {props.item.price}$
-      </p>
-      <img className="imgItem" src={props.item.imgPath1} alt=""></img>
-      <img className="imgItem" src={props.item.imgPath2} alt=""></img>
+      <div className="item-details-info">
+        <p>
+          <strong>Brand: </strong>
+          {props.item.brand}
+        </p>
+        <p>
+          <strong>Price: </strong>
+          {props.item.price}$
+        </p>
+      </div>
+      <div className="item-details-imgs">
+        <img className="imgItem" src={props.item.imgPath1} alt=""></img>
+        <img className="imgItem" src={props.item.imgPath2} alt=""></img>
+      </div>
       {/* <p>
         uploaded{" "}
         {formatDistanceToNow(new Date(props.item.createdAt), {
@@ -43,31 +47,28 @@ const ItemDetails = (props) => {
       </p> */}
       {/* {props.isLoggedIn && <button onClick={addToCart}>Add To Cart</button>} */}
       {props.isAdmin && (
-        <span onClick={handleClick}>
-          <img
-            className="deleteIcon"
-            src="https://cdn-icons-png.flaticon.com/512/216/216760.png"
-            alt=""
-          ></img>
-        </span>
+        <>
+          <span onClick={handleClick} className="itemClickIcon">
+            <img
+              className="deleteIcon"
+              src="https://cdn-icons-png.flaticon.com/512/216/216760.png"
+              alt=""
+            ></img>
+          </span>
+          <div class="hide">Delete item from DB</div>
+        </>
       )}
       {!props.isAdmin && props.isLoggedIn && (
-        <span onClick={addToCart}>
-          <img
-            className="addToCartIcon"
-            src="https://cdn-icons-png.flaticon.com/512/3405/3405668.png"
-            alt=""
-          ></img>
-        </span>
-      )}
-      {!props.isAdmin && props.isLoggedIn && props.isInCart && (
-        <span onClick={addToCart}>
-          <img
-            className="addToCartIcon"
-            src="https://cdn-icons-png.flaticon.com/512/3405/3405668.png"
-            alt=""
-          ></img>
-        </span>
+        <>
+          <span onClick={addToCart} className="itemClickIcon">
+            <img
+              className="addToCartIcon"
+              src="https://cdn-icons-png.flaticon.com/512/3405/3405668.png"
+              alt=""
+            ></img>
+          </span>
+          <div class="hide">Add item to cart</div>
+        </>
       )}
     </div>
   );

@@ -14,16 +14,20 @@ const ItemDetailsCart = (props) => {
   return (
     <div className="item-details">
       <h4>{props.item.title}</h4>
-      <p>
-        <strong>Description: </strong>
-        {props.item.description}
-      </p>
-      <p>
-        <strong>Price: </strong>
-        {props.item.price}$
-      </p>
-      <img className="imgItem" src={props.item.imgPath1} alt=""></img>
-      <img className="imgItem" src={props.item.imgPath2} alt=""></img>
+      <div className="item-details-info">
+        <p>
+          <strong>Brand: </strong>
+          {props.item.brand}
+        </p>
+        <p>
+          <strong>Price: </strong>
+          {props.item.price}$
+        </p>
+      </div>
+      <div className="item-details-imgs">
+        <img className="imgItem" src={props.item.imgPath1} alt=""></img>
+        <img className="imgItem" src={props.item.imgPath2} alt=""></img>
+      </div>
       {/* <p>
         uploaded{" "}
         {formatDistanceToNow(new Date(props.item.createdAt), {
@@ -32,7 +36,7 @@ const ItemDetailsCart = (props) => {
       </p> */}
       {/* {props.isLoggedIn && <button onClick={addToCart}>Add To Cart</button>} */}
       {!props.isAdmin && props.isLoggedIn && (
-        <span onClick={removeFromCart}>
+        <span onClick={removeFromCart} className="itemClickIcon">
           <img
             className="deleteIcon"
             src="https://cdn-icons-png.flaticon.com/512/216/216760.png"
@@ -40,6 +44,7 @@ const ItemDetailsCart = (props) => {
           ></img>
         </span>
       )}
+      <div class="hide">Remove item from cart</div>
     </div>
   );
 };
