@@ -159,3 +159,12 @@ input.error {
   position: relative;
   left: 70px;
 }
+.result{
+  width: 250px;
+  height: fit-content;
+  text-align: center;
+  margin-top: 25px;
+  border: 1px solid black;
+  position: absolute;
+  margin-left: 900px;
+}
