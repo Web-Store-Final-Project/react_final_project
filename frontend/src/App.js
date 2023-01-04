@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //pages & components
-import Home from "./pages/Home";
-import AdminHome from "./pages/AdminHome";
+import Home from "./pages/Home/Home";
+import AdminHome from "./pages/AdminHome/AdminHome";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
-import Navbar from "./components/Navbar";
+import Navbar from "./pages/Navbar/Navbar";
 import NotAuthorized from "./pages/NotAuthorized/NotAuthorized";
 import Profile from "./pages/Profile/Profile";
 import AdminAccountManagement from "./pages/AdminAccountManagement/AdminAccountManagement";

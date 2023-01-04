@@ -1,4 +1,4 @@
-import { useItemsContext } from "../hooks/useItemsContext";
+import { useItemsContext } from '../../../hooks/useItemsContext';
 
 
 const ItemDetails = (props) => {

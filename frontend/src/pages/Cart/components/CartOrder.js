@@ -16,6 +16,7 @@ export default function CartOrder(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({email: props.email, date: date,cart: props.cart,totalPrice:total})
         };
+        console.log(date);
         fetch('/api/orders/', requestOptions)
         .then(response => response.json())
         .then(data => console.log(data))
