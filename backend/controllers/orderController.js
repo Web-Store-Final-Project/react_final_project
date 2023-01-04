@@ -11,11 +11,10 @@ const getAllOrders = async(req,res)=>{
 
 //create new item
 const createOrder = async(req,res)=>{
-    const{fullname,email,date,cart} = req.body
-    const isAdmin = false;
+    const{email,date,cart,totalPrice} = req.body
     //add doc to db
     try{
-        const order = await Order.create({fullname,email,date,cart})
+        const order = await Order.create({email,date,cart,totalPrice})
         res.status(200).json(order)
     }
     catch(err){

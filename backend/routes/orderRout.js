@@ -7,10 +7,10 @@ const{
 const app = express();
 const router = express.Router()
 
-//GET all users
+//GET all orders
 router.get('/',getAllOrders)
 
-//POST a new user
+//POST a new order
 router.post('/',createOrder)
 
 module.exports = router

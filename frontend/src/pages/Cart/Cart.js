@@ -11,7 +11,7 @@ export default function Cart(props) {
         )
     }
     <div className="result">
-     <CartOrder cart={props.cart}/>
+     <CartOrder email={props.email} cart={props.cart}/>
     </div>
     <div className="cart">
       <div className="items">

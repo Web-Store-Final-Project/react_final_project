@@ -54,6 +54,8 @@ function App() {
                       amountInCart={amountInCart}
                       setAmountInCart={setAmountInCart}
                       cart={cart}
+                      email = {email}
+                      setEmail = {setEmail}
                       setCart={setCart}
                     />
                   }
