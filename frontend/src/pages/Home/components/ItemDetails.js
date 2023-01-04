@@ -69,7 +69,7 @@ const ItemDetails = (props) => {
               alt=""
             ></img>
           </span>
-          <div class="hide">Add item to cart</div>
+          <div className="hide">Add item to cart</div>
         </>
       )}
     </div>
