@@ -186,3 +186,12 @@ input.error {
   color: rgb(91, 91, 91);
   font-size: 15px;
 }
+.result{
+  width: 250px;
+  height: fit-content;
+  text-align: center;
+  margin-top: 25px;
+  border: 1px solid black;
+  position: absolute;
+  margin-left: 900px;
+}

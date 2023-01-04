@@ -1,6 +1,7 @@
 import { React } from "react";
 import ItemDetailsCart from "../../components/itemDetailsCart";
 import NotAuthorized from '../NotAuthorized/NotAuthorized';
+import CartOrder from '../../components/CartOrder';
 export default function Cart(props) {
   return (
     <>
@@ -9,6 +10,9 @@ export default function Cart(props) {
           <NotAuthorized/>
         )
     }
+    <div className="result">
+     <CartOrder cart={props.cart}/>
+    </div>
     <div className="cart">
       <div className="items">
         {
