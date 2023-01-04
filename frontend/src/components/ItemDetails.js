@@ -1,7 +1,9 @@
 import { useItemsContext } from "../hooks/useItemsContext";
 
+
 const ItemDetails = (props) => {
   const { dispatch } = useItemsContext();
+  
   const addToCart = () => {
     const cartArray = Object.values(props.cart);
     props.setCart((prev) => {
