@@ -205,3 +205,19 @@ input.error {
 .btnOrder{
   margin-bottom: 10%;
 }
+.orderProfile{
+  width: fit-content;
+  height: fit-content;
+  border: 4px solid black;
+  background-color: white;
+  display: table-row;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.itemImgInProfile{
+  width: 60px;
+  height: 60px;
+}

@@ -9,11 +9,7 @@ const Navbar = (props) => {
       <header>
         <div className="container">
           {!props.isAdmin && (
-            <Link
-              to={"/"}
-              amountInCart={props.amountInCart}
-              setAmountInCart={props.setAmountInCart}
-            >
+            <Link to={"/"}>
               <HomeIcon fontSize="large" />
             </Link>
           )}
@@ -31,6 +27,8 @@ const Navbar = (props) => {
                   onClick={() => {
                     props.setIsLoggedIn(false);
                     props.setIsAdmin(false);
+                    props.setCart([]);
+                    props.setAmountInCart(0);
                   }}
                 >
                   Log-Out

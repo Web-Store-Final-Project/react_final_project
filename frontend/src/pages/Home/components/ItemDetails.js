@@ -9,9 +9,8 @@ const ItemDetails = (props) => {
     props.setCart((prev) => {
       return [...cartArray, props.item];
     });
-    props.setAmountInCart(cartArray.length + 1);
+    props.setAmountInCart(props.amountInCart + 1);
     console.log(props.cart);
-    console.log(props.amountInCart);
   };
   const handleClick = async () => {
     const response = await fetch("/api/items/" + props.item._id, {

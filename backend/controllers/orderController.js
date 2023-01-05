@@ -21,9 +21,18 @@ const createOrder = async(req,res)=>{
         res.status(400).json({error:err.message})
     }
 }
-
+const getOrderByUserEmail = async (req,res)=>{
+    const email = req.params.email;
+    const order = await Order.find({email:email})
+    if(!order){
+        return res.status(404).json({err:'No such order'})
+    }else{
+        res.status(200).json(order);
+    }
+}
 module.exports = {
     getAllOrders,
     createOrder,
+    getOrderByUserEmail
 }
 

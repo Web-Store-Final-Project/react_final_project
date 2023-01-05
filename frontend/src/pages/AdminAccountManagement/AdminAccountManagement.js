@@ -5,12 +5,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import UsersTable from './components/UsersTable';
-  const style = {
+import OrdersTable from './components/OrdersTable';
+
+const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 600,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -20,9 +22,12 @@ import UsersTable from './components/UsersTable';
 
 export default function AdminAccountManagement(props) {
   const [fullname,setFullName] = useState("");
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [openUsers, setOpenUsers] = useState(false);
+    const handleOpenUsers = () => setOpenUsers(true);
+    const handleCloseUsers = () => setOpenUsers(false);
+    const [openOrders, setOpenOrders] = useState(false);
+    const handleOpenOrders = () => setOpenOrders(true);
+    const handleCloseOrders = () => setOpenOrders(false);
     useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch(`/api/users/${props.email}`);
@@ -46,10 +51,10 @@ export default function AdminAccountManagement(props) {
       props.isAdmin && (
         <>
           <h2>Hello {fullname}</h2>
-          <Button variant="contained" onClick={handleOpen}>Click to show all users</Button>
+          <Button variant="contained" onClick={handleOpenUsers}>Click to show all users</Button>
           <Modal
-            open={open}
-            onClose={handleClose}
+            open={openUsers}
+            onClose={handleCloseUsers}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -59,6 +64,24 @@ export default function AdminAccountManagement(props) {
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <UsersTable/>
+              </Typography>
+            </Box>
+          </Modal>
+          <br/>
+          <br/>
+          <Button variant="contained" onClick={handleOpenOrders}>Click to show all orders</Button>
+          <Modal
+            open={openOrders}
+            onClose={handleCloseOrders}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                All Orders Table
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <OrdersTable/>
               </Typography>
             </Box>
           </Modal>
