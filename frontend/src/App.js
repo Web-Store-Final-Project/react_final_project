@@ -15,7 +15,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState([]);
-  const [amountInCart, setAmountInCart] = useState(0 + cart.length);
+  const [amountInCart, setAmountInCart] = useState(0);
 
   return (
     <div className="App">
@@ -24,10 +24,13 @@ function App() {
           email={email}
           setEmail={setEmail}
           amountInCart={amountInCart}
+          setAmountInCart={setAmountInCart}
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           isAdmin={isAdmin}
           setIsAdmin={setIsAdmin}
+          cart={cart}
+          setCart={setCart}
         />
         <div className="pages">
           <Routes>

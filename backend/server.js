@@ -3,12 +3,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 const itemRoutes = require('./routes/itemsRout.js')
 const userRoutes = require('./routes/userRout')
-const orderRoutes = require('./routes/orderRout')
+const orderRoutes = require('./routes/orderRout.js')
 const burtonScraper  = require('./scrapers/scrapeBurton.js')
 const billabongScraper  = require('./scrapers/scrapeBillabong.js')
 const quikScraper = require('./scrapers/scrapeQuiksilver.js')
 const Item = require('./models/itemModel')
 const User = require('./models/User');
+var cors = require('cors')
 
 
 
@@ -17,6 +18,7 @@ const app = express()
 
 //middleware
 app.use(express.json())
+app.use(cors())
 
 app.use((req,res,next)=>{
     next()
@@ -26,7 +28,7 @@ app.use((req,res,next)=>{
 //routes
 app.use('/api/items' ,itemRoutes)
 app.use('/api/users' ,userRoutes)
-app.use('/api/orders' ,orderRoutes);
+app.use('/api/orders' ,orderRoutes)
 
 //connect to db
 mongoose.set('strictQuery',true);

@@ -44,7 +44,7 @@ const ItemDetailsCart = (props) => {
           ></img>
         </span>
       )}
-      <div class="hide">Remove item from cart</div>
+      <div className="hide">Remove item from cart</div>
     </div>
   );
 };
