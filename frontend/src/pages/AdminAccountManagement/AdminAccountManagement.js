@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import UsersTable from './components/UsersTable';
 import OrdersTable from './components/OrdersTable';
-
 const style = {
     position: 'absolute',
     top: '50%',
