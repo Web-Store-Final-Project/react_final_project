@@ -1,39 +1,67 @@
-import React from 'react'
+import {React,useEffect,useState} from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend} from 'recharts';
-const data = [
-  {
-    name: 'Page ',
-    orders_per_day: 12400,
-  },
-  {
-    name: 'Page ',
-    orders_per_day: 1398,
-  },
-  {
-    name: 'Page ',
-    orders_per_day: 9800,
-  },
-  {
-    name: 'Page ',
-    orders_per_day: 3908,
-  },
-  {
-    name: 'Page ',
-    orders_per_day: 4800,
-  },
-  {
-    name: 'Page ',
-    orders_per_day: 3800,
-  },
-  {
-    name: 'Page ',
-    orders_per_day: 4300,
-  },
-];
+
+// const data = [
+//   {
+//     name: 'Page ',
+//     orders_per_day: 12400,
+//   },
+//   {
+//     name: 'Page ',
+//     orders_per_day: 1398,
+//   },
+//   {
+//     name: 'Page ',
+//     orders_per_day: 9800,
+//   },
+//   {
+//     name: 'Page ',
+//     orders_per_day: 3908,
+//   },
+//   {
+//     name: 'Page ',
+//     orders_per_day: 4800,
+//   },
+//   {
+//     name: 'Page ',
+//     orders_per_day: 3800,
+//   },
+//   {
+//     name: 'Page ',
+//     orders_per_day: 4300,
+//   },
+// ];
 
 export default function Charts() {
-    return (
-        <BarChart
+    const [data,setData] = useState([]);
+    
+    
+    const getDayFromDate = (date) => {
+        const arr = date.split("-");
+        return arr[0];
+    }
+    const getOrderTime = (date) =>{
+      const date1= date.split("T")[1];
+      const time = date1.split(".")[0];
+      const arr = time.split(":");
+      return arr[0] + ":" + arr[1];
+      
+    }
+    useEffect(() => {
+        const fetchItems = async () => {
+        const response = await fetch("/api/orders/orderPerDate");
+        const json = await response.json();
+        if (response.ok) {
+            console.log(json)
+            setData(json);
+        };
+    }
+    fetchItems();
+}, []);
+
+
+return (
+    <BarChart
           width={500}
           height={300}
           data={data}
@@ -45,10 +73,10 @@ export default function Charts() {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="_id" />
           <YAxis />
           <Legend />
-          <Bar dataKey="orders_per_day" barSize={20} fill="#8884d8" />
+          <Bar dataKey="count" barSize={20} fill="black" />
         </BarChart>
   )
 }
