@@ -11,6 +11,18 @@ import Paper from '@mui/material/Paper';
 
 export default function UsersTable() {
     const [orders,setOrders] = useState([]);
+    const getDateCorrect = (date)=>{
+      const date1= date.split("T")[0];
+      const arr = date1.split("-");
+      return arr[2] + "-" + arr[1] + "-" + arr[0];
+    }
+    const getOrderTime = (date) =>{
+      const date1= date.split("T")[1];
+      const time = date1.split(".")[0];
+      const arr = time.split(":");
+      return arr[0] + ":" + arr[1];
+      
+    }
     useEffect(() => {
         const fetchItems = async () => {
         const response = await fetch("/api/orders/");
@@ -31,7 +43,7 @@ export default function UsersTable() {
         <TableHead>
           <TableRow>
             <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Date</TableCell>
+            <TableCell align="center">Date (UK Time-Zone)</TableCell>
             <TableCell align="center">Total Amount($)</TableCell>
           </TableRow>
         </TableHead>
@@ -39,7 +51,7 @@ export default function UsersTable() {
           {orders.map((order) => (
             <TableRow key={order.email}>
               <TableCell align="center">{order.email}</TableCell>
-              <TableCell align="center">{order.date}</TableCell>
+              <TableCell align="center">{getDateCorrect(order.date) + " (" + getOrderTime(order.date) + ")"}</TableCell>
               <TableCell align="center">{order.totalPrice}</TableCell>
             </TableRow>
           ))}

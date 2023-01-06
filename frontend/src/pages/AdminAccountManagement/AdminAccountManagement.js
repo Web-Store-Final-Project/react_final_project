@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import UsersTable from './components/UsersTable';
 import OrdersTable from './components/OrdersTable';
+import Charts from './components/Charts';
 
 const style = {
     position: 'absolute',
@@ -28,6 +29,9 @@ export default function AdminAccountManagement(props) {
     const [openOrders, setOpenOrders] = useState(false);
     const handleOpenOrders = () => setOpenOrders(true);
     const handleCloseOrders = () => setOpenOrders(false);
+    const [openGraph, setOpenGraph] = useState(false);
+    const handleOpenGraph = () => setOpenGraph(true);
+    const handleCloseGraph = () => setOpenGraph(false);
     useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch(`/api/users/${props.email}`);
@@ -82,6 +86,24 @@ export default function AdminAccountManagement(props) {
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <OrdersTable/>
+              </Typography>
+            </Box>
+          </Modal>
+          <br/>
+          <br/>
+          <Button variant="contained" onClick={handleOpenGraph}>Click to show Graphs</Button>
+          <Modal
+            open={openGraph}
+            onClose={handleCloseGraph}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Graph
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <Charts/>
               </Typography>
             </Box>
           </Modal>
