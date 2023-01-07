@@ -1,9 +1,8 @@
-import { useItemsContext } from '../../../hooks/useItemsContext';
-
+import { useItemsContext } from "../../../hooks/useItemsContext";
 
 const ItemDetails = (props) => {
   const { dispatch } = useItemsContext();
-  
+
   const addToCart = () => {
     const cartArray = Object.values(props.cart);
     props.setCart((prev) => {
@@ -40,13 +39,6 @@ const ItemDetails = (props) => {
         <img className="imgItem" src={props.item.imgPath1} alt=""></img>
         <img className="imgItem" src={props.item.imgPath2} alt=""></img>
       </div>
-      {/* <p>
-        uploaded{" "}
-        {formatDistanceToNow(new Date(props.item.createdAt), {
-          addSuffix: true,
-        })}
-      </p> */}
-      {/* {props.isLoggedIn && <button onClick={addToCart}>Add To Cart</button>} */}
       {props.isAdmin && (
         <>
           <span onClick={handleClick} className="itemClickIcon">

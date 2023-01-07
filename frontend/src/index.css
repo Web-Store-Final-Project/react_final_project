@@ -173,20 +173,24 @@ input.error {
 }
 
 .priceSliderBox {
-  width: 200px;
   position: relative;
-  left: 20px;
-  bottom: 5px;
+  top: 15px;
 }
 
 .priceSliderBoxText {
   position: relative;
   left: 70px;
-  top: 20px;
+  top: 0px;
   color: rgb(91, 91, 91);
   font-size: 15px;
 }
-.result{
+
+.priceSliderBoxTextPrice {
+  position: relative;
+  left: 60px;
+  bottom: 10px;
+}
+.result {
   width: 250px;
   background-color: white;
   height: fit-content;
@@ -202,10 +206,10 @@ input.error {
   justify-content: center;
   align-items: center;
 }
-.btnOrder{
+.btnOrder {
   margin-bottom: 10%;
 }
-.orderProfile{
+.orderProfile {
   width: fit-content;
   height: fit-content;
   border: 4px solid black;
@@ -217,7 +221,7 @@ input.error {
   align-items: center;
   border-radius: 20px;
 }
-.itemImgInProfile{
+.itemImgInProfile {
   width: 60px;
   height: 60px;
 }
