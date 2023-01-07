@@ -7,11 +7,9 @@ function valuetext(value) {
   return `${value}`;
 }
 
-export default function RangeSlider() {
-  const [value, setValue] = React.useState([0, 1000]);
-
+export default function FilterPrice(props) {
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    props.setValue(newValue);
   };
 
   return (
@@ -19,7 +17,7 @@ export default function RangeSlider() {
       <Typography className="priceSliderBoxText">Price</Typography>
       <Slider
         getAriaLabel={() => "Price range"}
-        value={value}
+        value={props.value}
         onChange={handleChange}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
@@ -27,7 +25,7 @@ export default function RangeSlider() {
         max={1000}
       />
       <Typography className="priceSliderBoxTextPrice">
-        {value[0]} - {value[1]}
+        {props.value[0]} - {props.value[1]}
       </Typography>
     </Box>
   );

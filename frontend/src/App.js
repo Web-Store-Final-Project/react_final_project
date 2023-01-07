@@ -16,6 +16,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState([]);
   const [amountInCart, setAmountInCart] = useState(0);
+  const [brand, setBrand] = useState("");
+  const [category, setCategory] = useState("");
+  const [value, setValue] = useState([0, 1000]);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <div className="App">
@@ -57,8 +61,8 @@ function App() {
                       amountInCart={amountInCart}
                       setAmountInCart={setAmountInCart}
                       cart={cart}
-                      email = {email}
-                      setEmail = {setEmail}
+                      email={email}
+                      setEmail={setEmail}
                       setCart={setCart}
                     />
                   }
@@ -75,6 +79,14 @@ function App() {
                     setAmountInCart={setAmountInCart}
                     cart={cart}
                     setCart={setCart}
+                    brand={brand}
+                    setBrand={setBrand}
+                    category={category}
+                    setCategory={setCategory}
+                    value={value}
+                    setValue={setValue}
+                    searchText={searchText}
+                    setSearchText={setSearchText}
                   />
                 }
               />
@@ -95,6 +107,14 @@ function App() {
                       isLoggedIn={isLoggedIn}
                       amountInCart={amountInCart}
                       setAmountInCart={setAmountInCart}
+                      brand={brand}
+                      setBrand={setBrand}
+                      category={category}
+                      setCategory={setCategory}
+                      value={value}
+                      setValue={setValue}
+                      searchText={searchText}
+                      setSearchText={setSearchText}
                     />
                   }
                 />
