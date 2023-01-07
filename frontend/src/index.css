@@ -173,18 +173,22 @@ input.error {
 }
 
 .priceSliderBox {
-  width: 200px;
   position: relative;
-  left: 20px;
-  bottom: 5px;
+  top: 15px;
 }
 
 .priceSliderBoxText {
   position: relative;
   left: 70px;
-  top: 20px;
+  top: 0px;
   color: rgb(91, 91, 91);
   font-size: 15px;
+}
+
+.priceSliderBoxTextPrice {
+  position: relative;
+  left: 60px;
+  bottom: 10px;
 }
 .result {
   width: 250px;

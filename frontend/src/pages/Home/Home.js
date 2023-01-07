@@ -10,6 +10,12 @@ import FilterSearchBar from "../Home/components/FilterSearchBar";
 const Home = (props) => {
   const { items, dispatch } = useItemsContext();
 
+  const brandSet = new Set();
+
+  {
+    items && items.map((item) => brandSet.add(item.brand));
+  }
+
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch("/api/items");
@@ -26,7 +32,7 @@ const Home = (props) => {
   return (
     <div className="home">
       <div className="filterBar">
-        <FilterBrand />
+        <FilterBrand brandSet={brandSet} />
         <FilterCategory />
         <FilterPrice />
         <FilterSearchBar />

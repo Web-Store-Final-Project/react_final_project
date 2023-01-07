@@ -23,6 +23,7 @@ export default function BasicSelect() {
           label="Brand"
           onChange={handleChange}
         >
+          {/* const mySet = {props.brandSet}; console.log([...mySet2]); */}
           <MenuItem value={1}>Billabong</MenuItem>
           <MenuItem value={2}>Quicksilver</MenuItem>
           <MenuItem value={3}>Burton</MenuItem>
