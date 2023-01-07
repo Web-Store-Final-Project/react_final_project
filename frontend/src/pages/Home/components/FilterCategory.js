@@ -5,11 +5,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function BasicSelect() {
-  const [category, setCategory] = React.useState("");
-
+export default function FilterCategory(props) {
   const handleChange = (event) => {
-    setCategory(event.target.value);
+    props.setCategory(event.target.value);
   };
 
   return (
@@ -19,13 +17,13 @@ export default function BasicSelect() {
         <Select
           labelId="category-select-label"
           id="category-select-label"
-          value={category}
+          value={props.category}
           label="category"
           onChange={handleChange}
         >
-          <MenuItem value={1}>Long Pants</MenuItem>
-          <MenuItem value={2}>Short Pants</MenuItem>
-          <MenuItem value={3}>T-Shirt</MenuItem>
+          <MenuItem value={"Long Pants"}>Long Pants</MenuItem>
+          <MenuItem value={"Short Pants"}>Short Pants</MenuItem>
+          <MenuItem value={"T-Shirt"}>T-Shirt</MenuItem>
         </Select>
       </FormControl>
     </Box>

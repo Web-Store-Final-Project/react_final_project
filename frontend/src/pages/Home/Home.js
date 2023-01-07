@@ -6,15 +6,13 @@ import FilterBrand from "../Home/components/FilterBrand";
 import FilterCategory from "../Home/components/FilterCategory";
 import FilterPrice from "../Home/components/FilterPrice";
 import FilterSearchBar from "../Home/components/FilterSearchBar";
+import Button from "@mui/material/Button";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import { requirePropFactory } from "@mui/material";
+
 // import ItemForm from "../components/ItemForm";
 const Home = (props) => {
   const { items, dispatch } = useItemsContext();
-
-  const brandSet = new Set();
-
-  {
-    items && items.map((item) => brandSet.add(item.brand));
-  }
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -29,13 +27,38 @@ const Home = (props) => {
     fetchItems();
   }, [dispatch]);
 
+  const submitFilter = async () => {
+    const response = await fetch(
+      `/api/items/${props.searchText}/${props.brand}`
+    );
+    const json = await response.json();
+
+    if (response.ok) {
+      console.log(json);
+      dispatch({ type: "SET_ITEMS", payload: json });
+    }
+  };
+
   return (
     <div className="home">
       <div className="filterBar">
-        <FilterBrand brandSet={brandSet} />
-        <FilterCategory />
-        <FilterPrice />
-        <FilterSearchBar />
+        <FilterSearchBar
+          searchText={props.searchText}
+          setSearchText={props.setSearchText}
+        />
+        <FilterBrand brand={props.brand} setBrand={props.setBrand} />
+        <FilterCategory
+          category={props.category}
+          setCategory={props.setCategory}
+        />
+        <FilterPrice value={props.value} setValue={props.setValue} />
+        <Button
+          onClick={submitFilter}
+          variant="outlined"
+          startIcon={<FilterAltIcon />}
+        >
+          Filter
+        </Button>
       </div>
       <div className="items">
         {items &&

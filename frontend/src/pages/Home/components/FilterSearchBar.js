@@ -4,14 +4,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function InputWithIcon() {
-  const [searchText, setSearchText] = React.useState("");
-
+export default function FilterSearchBar(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (searchText) {
-      console.log(searchText);
+    if (props.searchText) {
+      console.log(props.searchText);
     }
   };
 
@@ -26,7 +24,7 @@ export default function InputWithIcon() {
     <Box sx={{ "& > :not(style)": { m: 1 } }}>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => props.setSearchText(e.target.value)}
           id="input-with-icon-textfield"
           label="Search"
           InputProps={{
