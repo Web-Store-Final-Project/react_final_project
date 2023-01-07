@@ -30,9 +30,16 @@ const getOrderByUserEmail = async (req,res)=>{
         res.status(200).json(order);
     }
 }
+const getOrderPerDate = async(req,res)=>{
+    const doc = await Order.aggregate([
+        {$group:{_id: "$date",count: {$sum:1}}},
+    ]);
+    res.status(200).json(doc);
+}
 module.exports = {
     getAllOrders,
     createOrder,
-    getOrderByUserEmail
+    getOrderByUserEmail,
+    getOrderPerDate
 }
 
