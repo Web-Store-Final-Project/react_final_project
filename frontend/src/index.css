@@ -186,7 +186,7 @@ input.error {
   color: rgb(91, 91, 91);
   font-size: 15px;
 }
-.result{
+.result {
   width: 250px;
   background-color: white;
   height: fit-content;
@@ -202,10 +202,10 @@ input.error {
   justify-content: center;
   align-items: center;
 }
-.btnOrder{
+.btnOrder {
   margin-bottom: 10%;
 }
-.orderProfile{
+.orderProfile {
   width: fit-content;
   height: fit-content;
   border: 4px solid black;
@@ -217,7 +217,7 @@ input.error {
   align-items: center;
   border-radius: 20px;
 }
-.itemImgInProfile{
+.itemImgInProfile {
   width: 60px;
   height: 60px;
 }
