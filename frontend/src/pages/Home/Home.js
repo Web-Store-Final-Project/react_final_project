@@ -28,14 +28,23 @@ const Home = (props) => {
   }, [dispatch]);
 
   const submitFilter = async () => {
-    const response = await fetch(
-      `/api/items/${props.searchText}/${props.brand}`
-    );
-    const json = await response.json();
-
-    if (response.ok) {
-      console.log(json);
-      dispatch({ type: "SET_ITEMS", payload: json });
+    console.log(props.searchText.trim());
+    if (props.searchText.trim().length > 0) {
+      const response = await fetch(
+        `/api/items/search/${props.searchText.trim()}`
+      );
+      const json = await response.json();
+      if (response.ok) {
+        console.log(json);
+        dispatch({ type: "SET_ITEMS", payload: json });
+      }
+    } else {
+      const response = await fetch("/api/items");
+      const json = await response.json();
+      if (response.ok) {
+        console.log(json);
+        dispatch({ type: "SET_ITEMS", payload: json });
+      }
     }
   };
 

@@ -3,6 +3,7 @@ const {
   getAllItems,
   getSingleItem,
   getFilteredItem,
+  getBrandList,
   createItem,
   deleteItem,
   updateItem,
@@ -17,7 +18,10 @@ router.get("/", getAllItems);
 router.get("/:id", getSingleItem);
 
 //GET filtered items
-router.get("/:title/:brand", getFilteredItem);
+router.get("/search/:title", getFilteredItem);
+
+//GET brand list
+router.get("/brandsList/", getBrandList);
 
 //POST a new item
 router.post("/", createItem);
