@@ -31,14 +31,23 @@ const getSingleItem = async (req, res) => {
 
 const getFilteredItem = async (req, res) => {
   const title = req.params.title;
-  const brand = req.params.brand;
-  const item = await Item.find({ title: title, brand: brand });
-  console.log(item);
+  const item = await Item.find({
+    $or: [
+      { title: { $regex: title, $options: "i" } },
+      { brand: { $regex: title, $options: "i" } },
+    ],
+  }).collation({ locale: "en", strength: 2 });
   if (!item) {
     return res.status(404).json({ err: "No such order" });
   } else {
     res.status(200).json(item);
   }
+};
+
+const getBrandList = async (req, res) => {
+  const items = await Item.find({}).sort({ createdAt: -1 });
+
+  res.status(200).json(items);
 };
 
 //create new item
@@ -124,6 +133,7 @@ module.exports = {
   getAllItems,
   getSingleItem,
   getFilteredItem,
+  getBrandList,
   createItem,
   deleteItem,
   updateItem,
