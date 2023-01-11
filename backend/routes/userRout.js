@@ -2,6 +2,7 @@
 const express = require('express')
 const{
     setOnlineStatus,
+    getAllActiveUsers,
     getAllUsers,
     getUser,
     createUser,
@@ -22,4 +23,6 @@ router.post('/',createUser)
 //UPDATE the new status
 router.post('/setOnlineStatus',setOnlineStatus);
 
+//GET all active users
+router.get('/activeUsers',getAllActiveUsers)
 module.exports = router

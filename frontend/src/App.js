@@ -20,7 +20,6 @@ function App() {
   const [category, setCategory] = useState("");
   const [value, setValue] = useState([0, 1000]);
   const [searchText, setSearchText] = useState("");
-
   return (
     <div className="App">
       <BrowserRouter>

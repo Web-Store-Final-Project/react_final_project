@@ -32,6 +32,7 @@ export default function AdminAccountManagement(props) {
     const [openGraph, setOpenGraph] = useState(false);
     const handleOpenGraph = () => setOpenGraph(true);
     const handleCloseGraph = () => setOpenGraph(false);
+
     useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch(`/api/users/${props.email}`);

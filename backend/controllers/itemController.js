@@ -46,7 +46,8 @@ const getFilteredItem = async (req, res) => {
 
 const getAllBrands = async (req, res) => {
   try {
-    const items = await Item.find({});
+    const items = await Item.find({}).sort({ createdAt: -1 });
+    console.log(items);
     res.status(200).json(items);
   } catch (error) {
     res.status(500).json({ message: "Error fetching items from the database" });

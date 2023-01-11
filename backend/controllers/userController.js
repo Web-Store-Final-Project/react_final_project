@@ -4,10 +4,13 @@ const { response, json } = require('express');
 
 //get all users
 const getAllUsers = async(req,res)=>{
-    const users = await User.find({}).sort({createdAt:-1})
-    res.status(200).json(users)
+    const users = await User.find({}).sort({createdAt:-1});
+    res.status(200).json(users);
 }
-
+const getAllActiveUsers = async(req,res)=>{
+    const users = await User.find({isOnline: true}).sort({createdAt:-1});
+    res.status(200).json(users);
+}
 //get single item
 const getUser = async (req,res)=>{
     const email = req.params.email;
@@ -53,6 +56,7 @@ module.exports = {
     getAllUsers,
     getUser,
     createUser,
-    setOnlineStatus
+    setOnlineStatus,
+    getAllActiveUsers
 }
 
