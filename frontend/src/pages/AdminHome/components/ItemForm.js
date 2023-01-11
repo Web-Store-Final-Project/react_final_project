@@ -8,9 +8,11 @@ const ItemForm = ()=>{
 
     const[title,setTitle] = useState('')
     const[brand,setBrand] = useState('')
-    const[price,setPrice] = useState('')
+    const[price,setPrice] = useState(0)
     const[imgPath1,setImgPath1] = useState('')
     const[imgPath2,setImgPath2] = useState('')
+    const[category,seyCategory] = useState('')
+
     const[error,setError] = useState(null)
     const[emptyFields,setEmptyFields] = useState([])
     // const[date,setDate] = useState('')
@@ -18,7 +20,7 @@ const ItemForm = ()=>{
     const handleSubmit = async (event) =>{
         event.preventDefault()
 
-        const item = {title,price,brand,imgPath1,imgPath2}
+        const item = {title,price,brand,category,imgPath1,imgPath2}
 
         const response = await fetch('/api/items',{
             method:'POST',
@@ -38,6 +40,7 @@ const ItemForm = ()=>{
             setError(null)
             setTitle('')
             setBrand('')
+            seyCategory('')
             setPrice('')
             console.log("New item added")
             dispatch({type:'CREATE_ITEM',payload:json})
@@ -69,6 +72,14 @@ const ItemForm = ()=>{
              onChange={(event)=>setPrice(event.target.value)}
              value={price}
              className={emptyFields.includes('price') ? 'error' : ''}
+            />
+
+            <label>Item Category:</label>
+            <input
+             type="text"
+             onChange={(event)=>seyCategory(event.target.value)}
+             value={category}
+             className={emptyFields.includes('category') ? 'error' : ''}
             />
 
             <label>Item image 1(URL):</label>

@@ -45,14 +45,16 @@ mongoose.connect(process.env.MONGO_URI)
 
 //scraping once a week
 checkForScrape()
+// billabongScraper.apply()
+// quikScraper.app/ly()
 
 async function checkForScrape(){
     const nowInMs = Date.now()
-    const weekInMs = 604800000
+    const threeDaysInMs = 259200000
     
-    const beforeWeekMs = nowInMs - weekInMs
+    const before3DaysMs = nowInMs - threeDaysInMs
     const scrapedItem = await Item.findOne({ scrippedSiteName: 'BURTON' }, 'date').exec();
-    if(scrapedItem === null || scrapedItem.date < beforeWeekMs){
+    if(scrapedItem === null || scrapedItem.date < before3DaysMs){
         Item.deleteMany({scrippedSiteName:'BURTON'},function(err){
             if(err) console.log(err)
             console.log("deleted successfuly")
@@ -65,9 +67,9 @@ async function checkForScrape(){
             if(err) console.log(err)
             console.log("deleted successfuly")
         })
-
-        billabongScraper.apply()    
+   
         burtonScraper.apply()
         quikScraper.apply()
+        billabongScraper.apply() 
     }
 }
