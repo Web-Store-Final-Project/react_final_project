@@ -9,18 +9,32 @@ export default function Signin(props) {
   const navigate = useNavigate();
     const login = (e) => {
       e.preventDefault();
-      fire.auth().signInWithEmailAndPassword(email, password)
+      fire.auth().signInWithEmailAndPassword(email, password).then((user)=>{
+      const requestOptions = {
+        method: 'POST',
+        crossDomain: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({email: email})
+      };
+      fetch('/api/users/setOnlineStatus', requestOptions)
+      .then(response => response.json())
+      .then((data) => {
       if (email === "Admin123@gmail.com"){
         props.setIsAdmin(true)
         props.setIsLoggedIn(true)
         props.setEmail(email);
-        navigate("/admin")
+        navigate("/admin");
       }
       else{
         props.setIsLoggedIn(true)
         props.setEmail(email);
         navigate("/")
-      }
+      };
+    })
+  })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
   return (
     <div>

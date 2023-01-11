@@ -23,21 +23,35 @@ const getUser = async (req,res)=>{
 const createUser = async(req,res)=>{
     const{fullname,email,password} = req.body
     const isAdmin = false;
+    const isOnline = false;
     //add doc to db
     try{
-        const user = await User.create({fullname,email,password,isAdmin})
+        const user = await User.create({fullname,email,password,isAdmin, isOnline})
         res.status(200).json(user)
     }
     catch(err){
         res.status(400).json({error:err.message})
     }
 }
-
+const setOnlineStatus = async (req, res) => {
+  const email = req.body.email;
+//   console.log(email)
+  const user = await User.findOne({email: email});
+  const status = user.isOnline
+  const imaShelAmbar = await User.findOneAndUpdate({email: email},{isOnline: !status});
+  console.log(imaShelAmbar);
+  res.status(200).json(imaShelAmbar);
+//   await User.findOneAndUpdate({email: email},{$set:{isOnline:!user.isOnline}},{new:true},(err,doc)=>{
+//   }).catch((error)=>{
+//     console.log("yes");
+//   })
+}
 //delete an item
 
 module.exports = {
     getAllUsers,
     getUser,
     createUser,
+    setOnlineStatus
 }
 

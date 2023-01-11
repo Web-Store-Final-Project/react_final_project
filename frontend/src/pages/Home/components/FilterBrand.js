@@ -16,7 +16,7 @@ const FilterBrand = (props) => {
 
     useEffect(() => {
       const fetchBrands = async () => {
-        const response = await fetch("/api/items/brandsList/");
+        const response = await fetch("/api/items/brands");
         const json = await response.json();
 
         if (response.ok) {

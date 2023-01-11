@@ -1,6 +1,7 @@
 
 const express = require('express')
 const{
+    setOnlineStatus,
     getAllUsers,
     getUser,
     createUser,
@@ -17,5 +18,8 @@ router.get('/:email',getUser)
 
 //POST a new user
 router.post('/',createUser)
+
+//UPDATE the new status
+router.post('/setOnlineStatus',setOnlineStatus);
 
 module.exports = router

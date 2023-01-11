@@ -55,9 +55,22 @@ const Navbar = (props) => {
               <Link to={"/"}>
                 <h2
                   onClick={() => {
+                    const requestOptions = {
+                    method: 'POST',
+                    crossDomain: true,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({email: props.email})
+                  };
+                  console.log("worked");
+                  fetch(`/api/users/setOnlineStatus`, requestOptions)
+                  .then(response => response.json())
+                  .then(data => {
                     props.setIsLoggedIn(false);
                     props.setAmountInCart(0);
-                  }}
+                  }).catch(e=>{
+                    console.log(e)
+                  })
+                }}
                 >
                   Log-Out
                 </h2>
