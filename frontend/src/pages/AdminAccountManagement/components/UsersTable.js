@@ -17,7 +17,6 @@ export default function UsersTable() {
         const fetchItems = async () => {
         const response = await fetch("/api/users/");
         const json = await response.json();
-
         if (response.ok) {
             setUsers(json);
         }
@@ -34,6 +33,7 @@ export default function UsersTable() {
           <TableRow>
             <TableCell align="center">Full-Name</TableCell>
             <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Active</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -41,6 +41,13 @@ export default function UsersTable() {
             <TableRow key={user.email}>
               <TableCell align="center">{user.fullname}</TableCell>
               <TableCell align="center">{user.email}</TableCell>
+              {user.isOnline && (
+              <TableCell align="center" sx={{'background-color': 'lightgreen'}}>{user.isOnline.toString()}</TableCell>
+              )}
+              {!user.isOnline && (
+                <TableCell align="center" sx={{'background-color': 'red'}}>{user.isOnline.toString()}</TableCell>
+              )}
+              
             </TableRow>
           ))}
         </TableBody>

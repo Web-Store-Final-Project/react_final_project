@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useItemsContext } from "../../hooks/useItemsContext";
 //components
 import ItemDetails from "../Home/components/ItemDetails";
@@ -13,13 +13,26 @@ import { requirePropFactory } from "@mui/material";
 // import ItemForm from "../components/ItemForm";
 const Home = (props) => {
   const { items, dispatch } = useItemsContext();
-
+  const [brands,setBrands] = useState([]);
+  const getBrandsFromJson = (json) =>{
+    let brandsSet = new Set();
+    json.map((item) => { 
+      if (!brandsSet.has(item.brand)){
+          brandsSet.add(item.brand)
+      }
+    })
+    return brandsSet;
+  }
+  
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch("/api/items");
       const json = await response.json();
 
       if (response.ok) {
+        const brandsSet = getBrandsFromJson(json);
+        const brandsArray = Array.from(brandsSet);
+        setBrands(brandsArray);
         dispatch({ type: "SET_ITEMS", payload: json });
       }
     };
@@ -55,7 +68,7 @@ const Home = (props) => {
           searchText={props.searchText}
           setSearchText={props.setSearchText}
         />
-        <FilterBrand brand={props.brand} setBrand={props.setBrand} />
+        <FilterBrand brand={props.brand} setBrand={props.setBrand} brands={brands} />
         <FilterCategory
           category={props.category}
           setCategory={props.setCategory}
