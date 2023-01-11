@@ -12,7 +12,7 @@ const itemSchema = new Schema({
         required:false
     },
     price:{
-        type:String,
+        type:Number,
         required:true
     },
     imgPath1:{
@@ -28,6 +28,10 @@ const itemSchema = new Schema({
         required:false,
     },
     brand:{
+        type:String,
+        required:true,
+    },
+    category:{
         type:String,
         required:true,
     },

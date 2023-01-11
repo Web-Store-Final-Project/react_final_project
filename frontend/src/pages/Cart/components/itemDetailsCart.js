@@ -21,7 +21,11 @@ const ItemDetailsCart = (props) => {
         </p>
         <p>
           <strong>Price: </strong>
-          {props.item.price}$
+          {Number.parseFloat(props.item.price)}$
+        </p>
+        <p>
+          <strong>Category: </strong>
+          {props.item.category}$
         </p>
       </div>
       <div className="item-details-imgs">
