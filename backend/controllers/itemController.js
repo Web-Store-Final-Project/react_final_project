@@ -28,32 +28,40 @@ const getSingleItem = async (req, res) => {
 };
 
 //Get filtere Items
-
 const getFilteredItem = async (req, res) => {
   const title = req.params.title;
-  const item = await Item.find({
-    $or: [
-      { title: { $regex: title, $options: "i" } },
-      { brand: { $regex: title, $options: "i" } },
-    ],
-  }).collation({ locale: "en", strength: 2 });
-  if (!item) {
-    return res.status(404).json({ err: "No such order" });
+  const priceMin = req.params.priceMin;
+  const priceMax = req.params.priceMax;
+  if (title != "ALL") {
+    const item = await Item.find({
+      $and: [
+        { price: { $gt: priceMin } },
+        { price: { $lt: priceMax } },
+        {
+          $or: [
+            { title: { $regex: title, $options: "i" } },
+            { brand: { $regex: title, $options: "i" } },
+            { category: { $regex: title, $options: "i" } },
+          ],
+        },
+      ],
+    }).collation({ locale: "en", strength: 2 });
+    if (!item) {
+      return res.status(404).json({ err: "No such items" });
+    } else {
+      res.status(200).json(item);
+    }
   } else {
-    res.status(200).json(item);
+    const item = await Item.find({
+      $and: [{ price: { $gt: priceMin } }, { price: { $lt: priceMax } }],
+    }).collation({ locale: "en", strength: 2 });
+    if (!item) {
+      return res.status(404).json({ err: "No such items" });
+    } else {
+      res.status(200).json(item);
+    }
   }
 };
-
-const getAllBrands = async (req, res) => {
-  try {
-    const items = await Item.find({}).sort({ createdAt: -1 });
-    console.log(items);
-    res.status(200).json(items);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching items from the database" });
-  }
-};
-
 
 //create new item
 const createItem = async (req, res) => {
@@ -138,7 +146,6 @@ module.exports = {
   getAllItems,
   getSingleItem,
   getFilteredItem,
-  getAllBrands,
   createItem,
   deleteItem,
   updateItem,
