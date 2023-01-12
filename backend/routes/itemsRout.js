@@ -18,10 +18,7 @@ router.get("/", getAllItems);
 router.get("/:id", getSingleItem);
 
 //GET filtered items
-router.get("/search/:title", getFilteredItem);
-
-//GET brand list
-router.get("/brands", getAllBrands);
+router.get("/search/:title/:priceMin/:priceMax", getFilteredItem);
 
 //POST a new item
 router.post("/", createItem);
