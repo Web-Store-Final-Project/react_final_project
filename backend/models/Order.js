@@ -10,6 +10,10 @@ const orderSchema = new Schema({
         type: String,
         required: true,
     },
+    time: {
+        type:String,
+        required:true,
+    },
     cart: {
         type: Array,
         require: true,

@@ -11,10 +11,10 @@ const getAllOrders = async(req,res)=>{
 
 //create new order
 const createOrder = async(req,res)=>{
-    const{email,date,cart,totalPrice} = req.body
+    const{email,date,time,cart,totalPrice} = req.body
     //add doc to db
     try{
-        const order = await Order.create({email,date,cart,totalPrice})
+        const order = await Order.create({email,date,time,cart,totalPrice})
         res.status(200).json(order)
     }
     catch(err){
@@ -34,6 +34,7 @@ const getOrderPerDate = async(req,res)=>{
     const doc = await Order.aggregate([
         {$group:{_id: "$date",count: {$sum:1}}},
     ]);
+    console.log(doc);
     res.status(200).json(doc);
 }
 module.exports = {

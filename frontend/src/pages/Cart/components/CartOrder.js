@@ -23,11 +23,18 @@ export default function CartOrder(props) {
     const addOrder = (e) => {
         // e.preventDefault();
         let date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        const date1 = day+"-"+month+"-"+year;
+        const time = hours + ":" + minutes; 
         const requestOptions = {
             method: 'POST',
             crossDomain: true,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: props.email, date: date,cart: props.cart,totalPrice:total})
+            body: JSON.stringify({email: props.email, date: date1, time:time,cart: props.cart,totalPrice:total})
         };
         fetch('/api/orders/', requestOptions)
             .then(response => response.json())

@@ -51,7 +51,7 @@ export default function UsersTable() {
           {orders.map((order) => (
             <TableRow key={order.email}>
               <TableCell align="center">{order.email}</TableCell>
-              <TableCell align="center">{getDateCorrect(order.date) + " (" + getOrderTime(order.date) + ")"}</TableCell>
+              <TableCell align="center">{order.date + " ("+order.time+")"}</TableCell>
               <TableCell align="center">{order.totalPrice}</TableCell>
             </TableRow>
           ))}
