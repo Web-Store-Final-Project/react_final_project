@@ -47,7 +47,7 @@ export default function Profile(props) {
         resultJson.map((order)=>{
           return <>
             <div className="orderProfile">
-              <h4>date: {getDateCorrect(order.date) + " (" + getOrderTime(order.date) + ")"}</h4>
+              <h4>{order.date} ({order.time}) </h4>
               {
                 order.cart.map((item,index)=>{
                   return (

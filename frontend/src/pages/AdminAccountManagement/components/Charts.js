@@ -1,43 +1,11 @@
 import {React,useEffect,useState} from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend} from 'recharts';
-
-// const data = [
-//   {
-//     name: 'Page ',
-//     orders_per_day: 12400,
-//   },
-//   {
-//     name: 'Page ',
-//     orders_per_day: 1398,
-//   },
-//   {
-//     name: 'Page ',
-//     orders_per_day: 9800,
-//   },
-//   {
-//     name: 'Page ',
-//     orders_per_day: 3908,
-//   },
-//   {
-//     name: 'Page ',
-//     orders_per_day: 4800,
-//   },
-//   {
-//     name: 'Page ',
-//     orders_per_day: 3800,
-//   },
-//   {
-//     name: 'Page ',
-//     orders_per_day: 4300,
-//   },
-// ];
-
 export default function Charts() {
     const [data,setData] = useState([]);
     
-    
-    const getDayFromDate = (date) => {
-        const arr = date.split("-");
+
+    const getDateFormated = (date) => {
+        const arr = date.split("T");
         return arr[0];
     }
     const getOrderTime = (date) =>{
@@ -48,12 +16,16 @@ export default function Charts() {
       
     }
     useEffect(() => {
+        let dataFormated = [];
         const fetchItems = async () => {
         const response = await fetch("/api/orders/orderPerDate");
         const json = await response.json();
         if (response.ok) {
-            console.log(json)
-            setData(json);
+            json.map((date)=>{
+                dataFormated.push({"date": date._id,"count": date.count})
+             })
+            console.log(dataFormated);
+            setData(dataFormated);
         };
     }
     fetchItems();
@@ -62,7 +34,7 @@ export default function Charts() {
 
 return (
     <BarChart
-          width={500}
+          width={1000}
           height={300}
           data={data}
           margin={{
@@ -72,11 +44,11 @@ return (
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="_id" />
+          <CartesianGrid strokeDasharray="1 1" />
+          <XAxis dataKey="date" />
           <YAxis />
           <Legend />
-          <Bar dataKey="count" barSize={20} fill="black" />
+          <Bar dataKey="count" barSize={10} fill="black" />
         </BarChart>
   )
 }
