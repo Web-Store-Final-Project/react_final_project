@@ -14,7 +14,7 @@ export default function Signin(props) {
         method: 'POST',
         crossDomain: true,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({email: email})
+        body: JSON.stringify({email: email,isOnline: true})
       };
       fetch('/api/users/setOnlineStatus', requestOptions)
       .then(response => response.json())

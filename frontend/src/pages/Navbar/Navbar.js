@@ -24,12 +24,25 @@ const Navbar = (props) => {
               </Link>
               <Link to={"/"}>
                 <h2
-                  onClick={() => {
+                    onClick={() => {
+                    const requestOptions = {
+                    method: 'POST',
+                    crossDomain: true,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({email: props.email, isOnline:false})
+                  };
+                  console.log("worked");
+                  fetch(`/api/users/setOnlineStatus`, requestOptions)
+                  .then(response => response.json())
+                  .then(data => {
                     props.setIsLoggedIn(false);
                     props.setIsAdmin(false);
                     props.setCart([]);
                     props.setAmountInCart(0);
-                  }}
+                  }).catch(e=>{
+                    console.log(e)
+                  })
+                    }}
                 >
                   Log-Out
                 </h2>
@@ -59,7 +72,7 @@ const Navbar = (props) => {
                     method: 'POST',
                     crossDomain: true,
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({email: props.email})
+                    body: JSON.stringify({email: props.email, isOnline:false})
                   };
                   console.log("worked");
                   fetch(`/api/users/setOnlineStatus`, requestOptions)
