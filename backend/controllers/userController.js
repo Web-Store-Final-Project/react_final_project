@@ -37,14 +37,12 @@ const createUser = async(req,res)=>{
     }
 }
 const setOnlineStatus = async (req, res) => {
-  const email = req.body.email;
-//   console.log(email)
+  const {email,isOnline} = req.body;
     try{  
         const user = await User.findOne({email: email});
-        const status = user.isOnline
-        const imaShelAmbar = await User.findOneAndUpdate({email: email},{isOnline: !status});
-        console.log(imaShelAmbar);
-        res.status(200).json(imaShelAmbar);
+        //const status = user.isOnline
+        const updated = await User.findOneAndUpdate({email: email},{isOnline: isOnline});
+        res.status(200).json(updated);
     }catch(err){
         res.status(400).json({error:err.message})
     }

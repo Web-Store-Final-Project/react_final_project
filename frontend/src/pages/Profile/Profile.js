@@ -3,18 +3,6 @@ import {useState,useEffect} from 'react'
 export default function Profile(props) {
     const [fullname,setFullName] = useState("");
     const [resultJson,setResultJson] = useState([]);
-    const getDateCorrect = (date)=>{
-      const date1= date.split("T")[0];
-      const arr = date1.split("-");
-      return arr[2] + "-" + arr[1] + "-" + arr[0];
-    }
-    const getOrderTime = (date) =>{
-      const date1= date.split("T")[1];
-      const time = date1.split(".")[0];
-      const arr = time.split(":");
-      return arr[0] + ":" + arr[1];
-      
-    }
     useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch(`/api/users/${props.email}`);
