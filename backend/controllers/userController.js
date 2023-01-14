@@ -42,7 +42,6 @@ const setOnlineStatus = async (req, res) => {
         const user = await User.findOne({email: email});
         //const status = user.isOnline
         const updated = await User.findOneAndUpdate({email: email},{isOnline: isOnline});
-        console.log(updated);
         res.status(200).json(updated);
     }catch(err){
         res.status(400).json({error:err.message})
