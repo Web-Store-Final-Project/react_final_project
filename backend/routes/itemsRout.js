@@ -18,7 +18,10 @@ router.get("/", getAllItems);
 router.get("/:id", getSingleItem);
 
 //GET filtered items
-router.get("/search/:title/:priceMin/:priceMax", getFilteredItem);
+router.get(
+  "/search/:title/:brand/:category/:priceMin/:priceMax",
+  getFilteredItem
+);
 
 //POST a new item
 router.post("/", createItem);
