@@ -37,7 +37,11 @@ const getFilteredItem = async (req, res) => {
   };
 
   if (req.params.title !== "All") {
-    query["title"] = { $regex: `^${req.params.title}`, $options: "i" };
+    query["$or"] = [
+      { title: { $regex: `${req.params.title}`, $options: "i" } },
+      { brand: { $regex: `${req.params.title}`, $options: "i" } },
+      { category: { $regex: `${req.params.title}`, $options: "i" } },
+    ];
   }
 
   if (req.params.brand !== "All") {
@@ -48,46 +52,14 @@ const getFilteredItem = async (req, res) => {
     query["category"] = { $regex: `^${req.params.category}`, $options: "i" };
   }
 
-  const item = await Item.find(query);
+  const item = await Item.find(query)
+    .sort({ createdAt: -1 })
+    .collation({ locale: "en", strength: 2 });
   if (!item) {
     return res.status(404).json({ err: "No such items" });
   } else {
     res.status(200).json(item);
   }
-  // const title = req.params.title;
-  // const brand = req.params.brand;
-  // const category = req.params.category;
-  // const priceMin = req.params.priceMin;
-  // const priceMax = req.params.priceMax;
-  // if (title != "ALL") {
-  //   const item = await Item.find({
-  //     $and: [
-  //       { price: { $gt: priceMin } },
-  //       { price: { $lt: priceMax } },
-  //       {
-  //         $or: [
-  //           { title: { $regex: title, $options: "i" } },
-  //           { brand: { $regex: title, $options: "i" } },
-  //           { category: { $regex: title, $options: "i" } },
-  //         ],
-  //       },
-  //     ],
-  //   }).collation({ locale: "en", strength: 2 });
-  //   if (!item) {
-  //     return res.status(404).json({ err: "No such items" });
-  //   } else {
-  //     res.status(200).json(item);
-  //   }
-  // } else {
-  //   const item = await Item.find({
-  //     $and: [{ price: { $gt: priceMin } }, { price: { $lt: priceMax } }],
-  //   }).collation({ locale: "en", strength: 2 });
-  //   if (!item) {
-  //     return res.status(404).json({ err: "No such items" });
-  //   } else {
-  //     res.status(200).json(item);
-  //   }
-  // }
 };
 
 //create new item
