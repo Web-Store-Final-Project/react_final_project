@@ -16,8 +16,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState([]);
   const [amountInCart, setAmountInCart] = useState(0);
-  const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("All");
+  const [category, setCategory] = useState("All");
   const [value, setValue] = useState([0, 1000]);
   const [searchText, setSearchText] = useState("");
   return (

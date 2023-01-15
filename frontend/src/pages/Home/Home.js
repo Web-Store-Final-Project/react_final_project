@@ -13,17 +13,29 @@ import { requirePropFactory } from "@mui/material";
 // import ItemForm from "../components/ItemForm";
 const Home = (props) => {
   const { items, dispatch } = useItemsContext();
-  const [brands,setBrands] = useState([]);
-  const getBrandsFromJson = (json) =>{
+
+  const [brands, setBrands] = useState([]);
+  const getBrandsFromJson = (json) => {
     let brandsSet = new Set();
-    json.map((item) => { 
-      if (!brandsSet.has(item.brand)){
-          brandsSet.add(item.brand)
+    json.map((item) => {
+      if (!brandsSet.has(item.brand)) {
+        brandsSet.add(item.brand);
       }
-    })
+    });
     return brandsSet;
-  }
-  
+  };
+
+  const [categories, setCategories] = useState([]);
+  const getCategoriesFromJson = (json) => {
+    let categoriesSet = new Set();
+    json.map((item) => {
+      if (!categoriesSet.has(item.category)) {
+        categoriesSet.add(item.category);
+      }
+    });
+    return categoriesSet;
+  };
+
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch("/api/items");
@@ -33,6 +45,9 @@ const Home = (props) => {
         const brandsSet = getBrandsFromJson(json);
         const brandsArray = Array.from(brandsSet);
         setBrands(brandsArray);
+        const categoriesSet = getCategoriesFromJson(json);
+        const categoriesArray = Array.from(categoriesSet);
+        setCategories(categoriesArray);
         dispatch({ type: "SET_ITEMS", payload: json });
       }
     };
@@ -41,24 +56,28 @@ const Home = (props) => {
   }, [dispatch]);
 
   const submitFilter = async () => {
-    console.log(props.searchText.trim());
-    if (props.searchText.trim().length > 0) {
-      const response = await fetch(
-        `/api/items/search/${props.searchText.trim()}`
-      );
-      const json = await response.json();
-      if (response.ok) {
-        console.log(json);
-        dispatch({ type: "SET_ITEMS", payload: json });
-      }
-    } else {
-      const response = await fetch("/api/items");
-      const json = await response.json();
-      if (response.ok) {
-        console.log(json);
-        dispatch({ type: "SET_ITEMS", payload: json });
-      }
+    let searchText = props.searchText.trim();
+    if (props.searchText.trim().length == 0) {
+      searchText = "All";
     }
+    const response = await fetch(
+      `/api/items/search/${searchText}/${props.brand}/${props.category}/${props.value[0]}/${props.value[1]}`
+    );
+    const json = await response.json();
+    if (response.ok) {
+      console.log(json);
+      dispatch({ type: "SET_ITEMS", payload: json });
+    }
+    // } else {
+    //   const response = await fetch(
+    //     `/api/items/search/All/${props.value[0]}/${props.value[1]}`
+    //   );
+    //   const json = await response.json();
+    //   if (response.ok) {
+    //     console.log(json);
+    //     dispatch({ type: "SET_ITEMS", payload: json });
+    //   }
+    // }
   };
 
   return (
@@ -68,10 +87,15 @@ const Home = (props) => {
           searchText={props.searchText}
           setSearchText={props.setSearchText}
         />
-        <FilterBrand brand={props.brand} setBrand={props.setBrand} brands={brands} />
+        <FilterBrand
+          brand={props.brand}
+          setBrand={props.setBrand}
+          brands={brands}
+        />
         <FilterCategory
           category={props.category}
           setCategory={props.setCategory}
+          categories={categories}
         />
         <FilterPrice value={props.value} setValue={props.setValue} />
         <Button

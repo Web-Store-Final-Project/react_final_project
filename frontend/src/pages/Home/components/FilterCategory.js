@@ -21,9 +21,15 @@ export default function FilterCategory(props) {
           label="category"
           onChange={handleChange}
         >
-          <MenuItem value={"Long Pants"}>Long Pants</MenuItem>
-          <MenuItem value={"Short Pants"}>Short Pants</MenuItem>
-          <MenuItem value={"T-Shirt"}>T-Shirt</MenuItem>
+          <MenuItem value="All">
+            <em>All</em>
+          </MenuItem>
+          {props.categories.map((category) => (
+            <MenuItem value={category}>
+              {category.charAt(0).toUpperCase()}
+              {category.slice(1).toLowerCase()}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

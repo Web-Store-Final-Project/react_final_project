@@ -31,8 +31,12 @@ const ItemDetails = (props) => {
           {props.item.brand}
         </p>
         <p>
+          <strong>Category: </strong>
+          {props.item.category}
+        </p>
+        <p>
           <strong>Price: </strong>
-          {props.item.price}$
+          {Number.parseFloat(props.item.price)}$
         </p>
       </div>
       <div className="item-details-imgs">
