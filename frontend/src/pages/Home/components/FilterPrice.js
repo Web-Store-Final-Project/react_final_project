@@ -22,7 +22,7 @@ export default function FilterPrice(props) {
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         min={0}
-        max={1000}
+        max={props.maxPrice}
       />
       <Typography className="priceSliderBoxTextPrice">
         {props.value[0]} - {props.value[1]}

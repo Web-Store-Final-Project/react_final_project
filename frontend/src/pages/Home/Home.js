@@ -14,6 +14,17 @@ import { requirePropFactory } from "@mui/material";
 const Home = (props) => {
   const { items, dispatch } = useItemsContext();
 
+  const [maxPrice, setMaxPrice] = useState(1000);
+  const getMaxPriceFromJson = (json) => {
+    let MaxPrice = 0;
+    json.map((item) => {
+      if (MaxPrice < item.price) {
+        MaxPrice = item.price;
+      }
+    });
+    return MaxPrice;
+  };
+
   const [brands, setBrands] = useState([]);
   const getBrandsFromJson = (json) => {
     let brandsSet = new Set();
@@ -42,12 +53,21 @@ const Home = (props) => {
       const json = await response.json();
 
       if (response.ok) {
-        const brandsSet = getBrandsFromJson(json);
-        const brandsArray = Array.from(brandsSet);
-        setBrands(brandsArray);
-        const categoriesSet = getCategoriesFromJson(json);
-        const categoriesArray = Array.from(categoriesSet);
-        setCategories(categoriesArray);
+        if (brands.length == 0) {
+          const brandsSet = getBrandsFromJson(json);
+          const brandsArray = Array.from(brandsSet);
+          setBrands(brandsArray);
+        }
+        if (categories.length == 0) {
+          const categoriesSet = getCategoriesFromJson(json);
+          const categoriesArray = Array.from(categoriesSet);
+          setCategories(categoriesArray);
+        }
+        if (props.value[1] == 1000) {
+          const maxPrice = getMaxPriceFromJson(json);
+          setMaxPrice(maxPrice);
+          props.value[1] = Math.round(maxPrice);
+        }
         dispatch({ type: "SET_ITEMS", payload: json });
       }
     };
@@ -68,16 +88,6 @@ const Home = (props) => {
       console.log(json);
       dispatch({ type: "SET_ITEMS", payload: json });
     }
-    // } else {
-    //   const response = await fetch(
-    //     `/api/items/search/All/${props.value[0]}/${props.value[1]}`
-    //   );
-    //   const json = await response.json();
-    //   if (response.ok) {
-    //     console.log(json);
-    //     dispatch({ type: "SET_ITEMS", payload: json });
-    //   }
-    // }
   };
 
   return (
@@ -97,7 +107,11 @@ const Home = (props) => {
           setCategory={props.setCategory}
           categories={categories}
         />
-        <FilterPrice value={props.value} setValue={props.setValue} />
+        <FilterPrice
+          value={props.value}
+          setValue={props.setValue}
+          maxPrice={maxPrice}
+        />
         <Button
           onClick={submitFilter}
           variant="outlined"
