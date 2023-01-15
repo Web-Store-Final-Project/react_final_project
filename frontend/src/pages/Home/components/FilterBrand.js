@@ -22,6 +22,9 @@ const FilterBrand = (props) => {
           label="Brand"
           onChange={handleChange}
         >
+          <MenuItem value="All">
+            <em>All</em>
+          </MenuItem>
           {props.brands.map((brand) => (
             <MenuItem value={brand}>
               {brand.charAt(0).toUpperCase()}

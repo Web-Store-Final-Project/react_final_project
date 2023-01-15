@@ -56,27 +56,28 @@ const Home = (props) => {
   }, [dispatch]);
 
   const submitFilter = async () => {
-    if (props.searchText.trim().length > 0) {
-      const response = await fetch(
-        `/api/items/search/${props.searchText.trim()}/${props.value[0]}/${
-          props.value[1]
-        }`
-      );
-      const json = await response.json();
-      if (response.ok) {
-        console.log(json);
-        dispatch({ type: "SET_ITEMS", payload: json });
-      }
-    } else {
-      const response = await fetch(
-        `/api/items/search/ALL/${props.value[0]}/${props.value[1]}`
-      );
-      const json = await response.json();
-      if (response.ok) {
-        console.log(json);
-        dispatch({ type: "SET_ITEMS", payload: json });
-      }
+    let searchText = props.searchText.trim();
+    if (props.searchText.trim().length == 0) {
+      searchText = "All";
     }
+    const response = await fetch(
+      `/api/items/search/${searchText}/${props.brand}/${props.category}/${props.value[0]}/${props.value[1]}`
+    );
+    const json = await response.json();
+    if (response.ok) {
+      console.log(json);
+      dispatch({ type: "SET_ITEMS", payload: json });
+    }
+    // } else {
+    //   const response = await fetch(
+    //     `/api/items/search/All/${props.value[0]}/${props.value[1]}`
+    //   );
+    //   const json = await response.json();
+    //   if (response.ok) {
+    //     console.log(json);
+    //     dispatch({ type: "SET_ITEMS", payload: json });
+    //   }
+    // }
   };
 
   return (

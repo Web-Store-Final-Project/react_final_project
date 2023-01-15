@@ -21,6 +21,9 @@ export default function FilterCategory(props) {
           label="category"
           onChange={handleChange}
         >
+          <MenuItem value="All">
+            <em>All</em>
+          </MenuItem>
           {props.categories.map((category) => (
             <MenuItem value={category}>
               {category.charAt(0).toUpperCase()}
