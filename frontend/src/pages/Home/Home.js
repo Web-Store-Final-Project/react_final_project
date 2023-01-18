@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { useEffect, useState } from "react";
 import { useItemsContext } from "../../hooks/useItemsContext";
 //components
@@ -8,7 +9,6 @@ import FilterPrice from "../Home/components/FilterPrice";
 import FilterSearchBar from "../Home/components/FilterSearchBar";
 import Button from "@mui/material/Button";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { requirePropFactory } from "@mui/material";
 
 // import ItemForm from "../components/ItemForm";
 const Home = (props) => {
@@ -28,6 +28,7 @@ const Home = (props) => {
   const [brands, setBrands] = useState([]);
   const getBrandsFromJson = (json) => {
     let brandsSet = new Set();
+    // eslint-disable-next-line array-callback-return
     json.map((item) => {
       if (!brandsSet.has(item.brand)) {
         brandsSet.add(item.brand);
@@ -53,17 +54,17 @@ const Home = (props) => {
       const json = await response.json();
 
       if (response.ok) {
-        if (brands.length == 0) {
+        if (brands.length === 0) {
           const brandsSet = getBrandsFromJson(json);
           const brandsArray = Array.from(brandsSet);
           setBrands(brandsArray);
         }
-        if (categories.length == 0) {
+        if (categories.length === 0) {
           const categoriesSet = getCategoriesFromJson(json);
           const categoriesArray = Array.from(categoriesSet);
           setCategories(categoriesArray);
         }
-        if (props.value[1] == 1000) {
+        if (props.value[1] === 1000) {
           const maxPrice = getMaxPriceFromJson(json);
           setMaxPrice(maxPrice);
           props.value[1] = Math.round(maxPrice);
@@ -73,11 +74,11 @@ const Home = (props) => {
     };
 
     fetchItems();
-  }, [dispatch]);
+  }, [brands.length, categories.length, dispatch, props.value]);
 
   const submitFilter = async () => {
     let searchText = props.searchText.trim();
-    if (props.searchText.trim().length == 0) {
+    if (props.searchText.trim().length === 0) {
       searchText = "All";
     }
     const response = await fetch(
