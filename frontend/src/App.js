@@ -10,6 +10,7 @@ import NotAuthorized from "./pages/NotAuthorized/NotAuthorized";
 import Profile from "./pages/Profile/Profile";
 import AdminAccountManagement from "./pages/AdminAccountManagement/AdminAccountManagement";
 import Cart from "./pages/Cart/Cart";
+
 function App() {
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
@@ -20,6 +21,7 @@ function App() {
   const [category, setCategory] = useState("All");
   const [value, setValue] = useState([0, 1000]);
   const [searchText, setSearchText] = useState("");
+  const [contactList, setContactList] = useState([]);
   return (
     <div className="App">
       <BrowserRouter>
@@ -50,20 +52,33 @@ function App() {
             {isLoggedIn && !isAdmin && (
               <>
                 <Route path={"/logout"} />
-                <Route path={`/${email}`} element={<Profile email={email} />} />
+                <Route
+                  path={`/${email}`}
+                  element={
+                    <>
+                      <Profile
+                        email={email}
+                        setContactList={setContactList}
+                        contactList={contactList}
+                      />
+                    </>
+                  }
+                />
                 <Route path="/signin" element={<NotAuthorized />} />
                 <Route
                   path="/cart"
                   element={
-                    <Cart
-                      isLoggedIn={isLoggedIn}
-                      amountInCart={amountInCart}
-                      setAmountInCart={setAmountInCart}
-                      cart={cart}
-                      email={email}
-                      setEmail={setEmail}
-                      setCart={setCart}
-                    />
+                    <>
+                      <Cart
+                        isLoggedIn={isLoggedIn}
+                        amountInCart={amountInCart}
+                        setAmountInCart={setAmountInCart}
+                        cart={cart}
+                        email={email}
+                        setEmail={setEmail}
+                        setCart={setCart}
+                      />
+                    </>
                   }
                 />
               </>
@@ -94,7 +109,12 @@ function App() {
             <Route
               path="/adminManagement"
               element={
-                <AdminAccountManagement isAdmin={isAdmin} email={email} />
+                <AdminAccountManagement
+                  isAdmin={isAdmin}
+                  email={email}
+                  setContactList={setContactList}
+                  contactList={contactList}
+                />
               }
             />
             {!isLoggedIn && !isAdmin && (
