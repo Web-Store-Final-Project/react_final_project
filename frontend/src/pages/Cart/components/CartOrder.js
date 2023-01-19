@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 export default function CartOrder(props) {
     const [total,setTotal] = useState(0);  
     const navigate = useNavigate();
-    
+
     useEffect(()=>{
         const sum = props.cart.reduce((result,item)=>{
             return parseInt(result) + parseInt(item.price);
@@ -39,9 +39,17 @@ export default function CartOrder(props) {
     return (
     <div>
         <form>
-            <h1>Order Now!</h1>
-            <h4>Total: {total}$</h4>
-            <button className="btnOrder" onClick={addOrder}>Order</button>
+            { total > 0 && (
+                <div>
+                    <h1>Order Now!</h1>
+                    <h4>Total: {total}$</h4>
+                </div>
+            )
+            }
+
+            { total > 0 && 
+                <button className="btnOrder" onClick={addOrder}>Order</button>
+            }
         </form>
     </div>
   )
