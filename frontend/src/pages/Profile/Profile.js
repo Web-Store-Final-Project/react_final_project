@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import io from "socket.io-client";
 import Chat from "../Profile/Chat";
@@ -16,14 +14,12 @@ export default function Profile(props) {
   const [room, setRoom] = useState("");
 
   const joinRoom = () => {
-    setUsername(fullname);
     setRoom(props.email);
-    setOpenChat(true);
     if (username !== "" && room !== "") {
       socket.emit("join_room", room);
     }
-    props.setContactList((list) => [...list, props.email]);
-    console.log(props.contactList);
+    setUsername(fullname);
+    setOpenChat(true);
   };
 
   const [openChat, setOpenChat] = useState(false);
