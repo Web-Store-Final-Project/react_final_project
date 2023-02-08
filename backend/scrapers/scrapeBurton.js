@@ -39,7 +39,7 @@ async function getScrapedData(){
                     })
                 }
             })   
-            console.log(`${itemsArr.length} ${category} scraped from burton`)
+            console.log(` ${itemsArr.length} ${category} scraped from burton`)
             itemsArr.forEach(item => {
                 postItem(item)
             });

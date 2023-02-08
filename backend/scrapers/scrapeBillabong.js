@@ -21,18 +21,23 @@ async function getScrapedData(){
             const $ =  cheerio.load(html)
     
             $('.producttileinner' ,html).each(function(){
-                const tempTitle = $(this).find('img').attr('aria-labelledby')
+                const title = $(this).find('img').attr('title')
+
+                const splitTitleArr = title.split(",");
+                const finalTitle = splitTitleArr[1];
+
                 const tempPrice = $(this).find('.salesprice').text()
                 const imgSrc1 = $(this).find('img').attr('src')
                 const imgSrc2 = imgSrc1.replace("frt" ,"bck")
-    
+
+                
+
                 const price =  tempPrice.replace(/\n/g, '').replace("$","").trim()
-                const title = tempTitle.replace('View Product ','')
 
                 if(title !== "" && price !== "" && imgSrc1 !== "" && imgSrc2 !== "" && 
                 imgSrc1 !== imgSrc2 && itemsArr.length < 12){
                     itemsArr.push({
-                        title,
+                        finalTitle,
                         price,
                         category,
                         imgSrc1,
@@ -48,7 +53,7 @@ async function getScrapedData(){
             async function postItem(item){
                 mongoose.connect(process.env.MONGO_URI)
                 const myItem = new Item({
-                    title:item.title,
+                    title:item.finalTitle,
                     price:item.price,
                     imgPath1:item.imgSrc1,
                     imgPath2:item.imgSrc2,

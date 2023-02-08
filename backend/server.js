@@ -45,8 +45,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 //scraping once a week
 checkForScrape()
-// billabongScraper.apply()
-// quikScraper.app/ly()
 
 async function checkForScrape(){
     const nowInMs = Date.now()
