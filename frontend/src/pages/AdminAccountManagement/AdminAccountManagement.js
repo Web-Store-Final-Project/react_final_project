@@ -34,18 +34,11 @@ export default function AdminAccountManagement(props) {
   const [room, setRoom] = useState("");
 
   const joinRoom = () => {
-    console.log(props.contactList);
-    setUsername("Support Agent");
-    setOpenChat(true);
     if (username !== "" && room !== "") {
       socket.emit("join_room", room);
     }
-  };
-
-  const [contactChat, setContactChat] = useState("");
-
-  const handleChange = (event) => {
-    setContactChat(event.target.value);
+    setUsername("Support Agent");
+    setOpenChat(true);
   };
 
   const [fullname, setFullName] = useState("");
