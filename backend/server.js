@@ -83,7 +83,7 @@ mongoose
   });
 
 //scraping once a week
-checkForScrape()
+checkForScrape();
 // billabongScraper.apply()
 // quikScraper.app/ly()
 
