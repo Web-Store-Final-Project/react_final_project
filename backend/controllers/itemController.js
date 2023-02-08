@@ -64,7 +64,7 @@ const getFilteredItem = async (req, res) => {
 
 //create new item
 const createItem = async (req, res) => {
-  const { title, description, price, imgPath, date } = req.body;
+  const { title, price, brand, category, imgPath1, imgPath2, date } = req.body;
 
   let emptyFields = [];
 
@@ -72,14 +72,17 @@ const createItem = async (req, res) => {
   if (!title) {
     emptyFields.push("title");
   }
-  if (!description) {
-    emptyFields.push("description");
+  if (!brand) {
+    emptyFields.push("brand");
+  }
+  if (!category) {
+    emptyFields.push("category");
   }
   if (!price) {
     emptyFields.push("price");
   }
-  if (!imgPath) {
-    emptyFields.push("imgPath");
+  if (!imgPath1) {
+    emptyFields.push("imgPath1");
   }
   if (emptyFields.length > 0) {
     return res
@@ -91,9 +94,11 @@ const createItem = async (req, res) => {
   try {
     const item = await Item.create({
       title,
-      description,
       price,
-      imgPath,
+      brand,
+      category,
+      imgPath1,
+      imgPath2,
       date,
     });
     res.status(200).json(item);
