@@ -19,7 +19,7 @@ export default function Charts() {
 
 return (
     <BarChart
-          width={500}
+          width={800}
           height={300}
           data={data}
           margin={{

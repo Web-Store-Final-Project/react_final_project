@@ -15,6 +15,7 @@ const Home = (props) => {
   //const { items, dispatch } = useItemsContext();
   const [items, setItems] = useState([]);
   const [flag,setFlag] = useState(true);
+  const [isFiltered,setIsFiltered] = useState(false);
   const [maxPrice, setMaxPrice] = useState(1000);
   const getMaxPriceFromJson = (json) => {
     let MaxPrice = 0;
@@ -81,6 +82,7 @@ const Home = (props) => {
   }, [brands.length, categories.length, items, props.value,flag]);
 
   const submitFilter = async () => {
+    setIsFiltered(true);
     let searchText = props.searchText.trim();
     if (props.searchText.trim().length === 0) {
       searchText = "All";
@@ -128,7 +130,8 @@ const Home = (props) => {
         </Button>
       </div>
       <div className="items">
-        {items &&
+        {
+          items.length > 0 &&
           items.map((item) => (
             <ItemDetails
               isLoggedIn={props.isLoggedIn}
@@ -140,6 +143,10 @@ const Home = (props) => {
               setCart={props.setCart}
             />
           ))}
+          {
+            items.length === 0 && isFiltered && <h2 style={{textAlign:'center'}}>Oops Try To Search Again Couldn't Find Anything</h2>
+          }
+        
       </div>
     </div>
   );
