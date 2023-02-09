@@ -19,7 +19,7 @@ export default function Charts() {
 
 return (
     <BarChart
-          width={300}
+          width={800}
           height={300}
           data={data}
           margin={{
@@ -33,7 +33,7 @@ return (
           <XAxis dataKey="date" />
           <YAxis />
           <Legend />
-          <Bar dataKey="count" barSize={10} fill="red" />
+          <Bar dataKey="count" barSize={10} fill="blue" />
         </BarChart>
   )
 }

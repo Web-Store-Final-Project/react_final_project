@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 import { useEffect, useState } from "react";
-import { useItemsContext } from "../../hooks/useItemsContext";
+//import { useItemsContext } from "../../hooks/useItemsContext";
 //components
 import ItemDetails from "../Home/components/ItemDetails";
 import FilterBrand from "../Home/components/FilterBrand";
@@ -12,8 +12,10 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 // import ItemForm from "../components/ItemForm";
 const Home = (props) => {
-  const { items, dispatch } = useItemsContext();
-
+  //const { items, dispatch } = useItemsContext();
+  const [items, setItems] = useState([]);
+  const [flag,setFlag] = useState(true);
+  const [isFiltered,setIsFiltered] = useState(false);
   const [maxPrice, setMaxPrice] = useState(1000);
   const getMaxPriceFromJson = (json) => {
     let MaxPrice = 0;
@@ -69,14 +71,18 @@ const Home = (props) => {
           setMaxPrice(maxPrice);
           props.value[1] = Math.round(maxPrice);
         }
-        dispatch({ type: "SET_ITEMS", payload: json });
+        // dispatch({ type: "SET_ITEMS", payload: json });
+        setItems(json);
+        setFlag(false);
       }
     };
-
-    fetchItems();
-  }, [brands.length, categories.length, dispatch, props.value]);
+    if (flag){
+      fetchItems();
+    }
+  }, [brands.length, categories.length, items, props.value,flag]);
 
   const submitFilter = async () => {
+    setIsFiltered(true);
     let searchText = props.searchText.trim();
     if (props.searchText.trim().length === 0) {
       searchText = "All";
@@ -87,7 +93,9 @@ const Home = (props) => {
     const json = await response.json();
     if (response.ok) {
       console.log(json);
-      dispatch({ type: "SET_ITEMS", payload: json });
+      // dispatch({ type: "SET_ITEMS", payload: json });
+      setItems([]);
+      setItems(json);
     }
   };
 
@@ -122,7 +130,8 @@ const Home = (props) => {
         </Button>
       </div>
       <div className="items">
-        {items &&
+        {
+          items.length > 0 &&
           items.map((item) => (
             <ItemDetails
               isLoggedIn={props.isLoggedIn}
@@ -134,6 +143,10 @@ const Home = (props) => {
               setCart={props.setCart}
             />
           ))}
+          {
+            items.length === 0 && isFiltered && <h2 style={{textAlign:'center'}}>Oops Try To Search Again Couldn't Find Anything</h2>
+          }
+        
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ const getSingleItem = async (req, res) => {
   res.status(200).json(item);
 };
 
-//Get filtere Items
+//Get filtered Items
 const getFilteredItem = async (req, res) => {
   const query = {
     price: {
