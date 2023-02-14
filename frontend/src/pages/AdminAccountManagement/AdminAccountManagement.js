@@ -80,7 +80,24 @@ export default function AdminAccountManagement(props) {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style}>
+            <Box sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              maxWidth: '80vw',
+              maxHeight: '80vh',
+              overflowY: 'auto',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 4,
+              '&::-webkit-scrollbar': {
+                width: '0.5em'
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#888'
+              }
+            }}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 All Users Table
               </Typography>
@@ -100,7 +117,24 @@ export default function AdminAccountManagement(props) {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style}>
+            <Box sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              maxWidth: '80vw',
+              maxHeight: '80vh',
+              overflowY: 'auto',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 4,
+              '&::-webkit-scrollbar': {
+                width: '0.5em'
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#888'
+              }
+            }}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 All Orders Table
               </Typography>
