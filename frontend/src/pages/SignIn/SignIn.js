@@ -6,6 +6,7 @@ import SignUpIcon from './components/SignUpIcon';
 export default function Signin(props) {
   const [password, setPassword] = useState("");
   const [email,setEmail] = useState("");
+  const [error,setError] = useState("");
   const navigate = useNavigate();
     const login = (e) => {
       e.preventDefault();
@@ -34,6 +35,7 @@ export default function Signin(props) {
   })
     .catch((err)=>{
       console.log(err);
+      setError("Email or password is incorrect. Please try again.");
     })
   }
   return (
@@ -62,7 +64,8 @@ export default function Signin(props) {
         </div>
         <button onClick={login}>Click to sign-in</button>
       </form>
-      <div style={{ paddingTop: "20px" }}>
+      <h4>{error}</h4>
+      <div style={{ paddingTop: "0px" }}>
         <Link to={"/signup"}>
           <SignUpIcon />
         </Link>

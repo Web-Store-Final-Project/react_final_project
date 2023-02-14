@@ -6,7 +6,7 @@ export default function SignUp(){
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState(""); 
   const [fullname,setFullName] = useState(""); 
-  
+  const [error,setError] = useState("");
   const navigate = useNavigate();
   const signup = (e) =>{
     e.preventDefault();
@@ -25,6 +25,7 @@ export default function SignUp(){
       navigate("/signin");
     }).catch((err)=>{
       console.log(err);
+      setError("Email or password is incorrect. Please try again.");
     });
   }
   return (
@@ -52,6 +53,7 @@ export default function SignUp(){
         </div>
         <button onClick={signup} >Click to sign-up</button>
       </form>
+      <h4>{error}</h4>
     </div>
   )
 }
