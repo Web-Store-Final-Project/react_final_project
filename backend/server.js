@@ -93,11 +93,11 @@ async function checkForScrape() {
 
   const before3DaysMs = nowInMs - threeDaysInMs;
   const scrapedItem = await Item.findOne(
-    { scrippedSiteName: "BURTON" },
+    { scrippedSiteName: "BILLABONG" },
     "date"
   ).exec();
   if (scrapedItem === null || scrapedItem.date < before3DaysMs) {
-    Item.deleteMany({ scrippedSiteName: "BURTON" }, function (err) {
+    Item.deleteMany({ scrippedSiteName: "RVCA" }, function (err) {
       if (err) console.log(err);
       console.log("deleted successfuly");
     });
@@ -110,7 +110,7 @@ async function checkForScrape() {
       console.log("deleted successfuly");
     });
 
-    burtonScraper.apply();
+    // burtonScraper.apply();
     quikScraper.apply();
     billabongScraper.apply();
   }
