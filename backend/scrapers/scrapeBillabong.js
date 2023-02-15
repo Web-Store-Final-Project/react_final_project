@@ -3,18 +3,27 @@ const cheerio = require('cheerio')
 const mongoose = require('mongoose')
 const Item =  require('../models/itemModel')
 
-const firstUrl = 'https://www.billabong.com/mens-tshirts/'
-const SecondUrl = 'https://www.billabong.com/mens-sweatshirts/'
-const thirdUrl ='https://www.billabong.com/mens-jackets/'
+const firstUrlBilla = 'https://www.billabong.com/mens-tshirts/'
+const SecondUrlBilla = 'https://www.billabong.com/mens-sweatshirts/'
+const thirdUrlBilla ='https://www.billabong.com/mens-jackets/'
+
+const firstUrlRVCA ='https://www.rvca.com/mens-tshirts/'
+const secondUrlRVCA ='https://www.rvca.com/mens-sweatshirts/'
+const thirdUrlRVCA ='https://www.rvca.com/mens-jackets/'
 
 
 async function getScrapedData(){
 
-    scrapeByUrl(firstUrl,"tshirt")
-    scrapeByUrl(SecondUrl,"sweatshirt")
-    scrapeByUrl(thirdUrl,"jacket")
+    scrapeByUrl(firstUrlBilla,"tshirt","BILLABONG")
+    scrapeByUrl(SecondUrlBilla,"sweatshirt","BILLABONG")
+    scrapeByUrl(thirdUrlBilla,"jacket","BILLABONG")
 
-    function scrapeByUrl(url,category){
+    scrapeByUrl(firstUrlRVCA,"tshirt","RVCA")
+    scrapeByUrl(secondUrlRVCA,"sweatshirt","RVCA")
+    scrapeByUrl(thirdUrlRVCA,"jacket","RVCA")
+
+
+    function scrapeByUrl(url,category,brand){
         const itemsArr = []
         axios(url).then(response =>{
             const html =  response.data
@@ -45,7 +54,7 @@ async function getScrapedData(){
                     })
                 }
             })   
-            console.log(`${itemsArr.length} ${category} scraped from billabong`)
+            console.log(`${itemsArr.length} ${category} scraped from ${brand}`)
             itemsArr.forEach(item => {
                 postItem(item)
             });
@@ -57,8 +66,8 @@ async function getScrapedData(){
                     price:item.price,
                     imgPath1:item.imgSrc1,
                     imgPath2:item.imgSrc2,
-                    scrippedSiteName:'BILLABONG',
-                    brand:'BILLABONG',
+                    scrippedSiteName:brand,
+                    brand:brand,
                     category:item.category,
                     date:Date.now()
                 })
